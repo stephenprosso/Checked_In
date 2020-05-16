@@ -1,0 +1,72 @@
+<script>
+  
+  document.addEventListener('DOMContentLoaded', function() {
+      var selectBoxes = document.querySelectorAll('select');
+      M.FormSelect.init(selectBoxes);  
+    //The google script ill call get table data passing data. on success it will call the generateTable passing the data from data array.
+   google.script.run.withSuccessHandler(generateBBTable).getBBTableData();
+   
+    }); 
+    
+   
+    document.getElementById("btn").addEventListener("click",addGuest); 
+    function addGuest(){
+    var userInfo = {};
+    
+    userInfo.fname = document.getElementById("firstName").value;
+    userInfo.lname = document.getElementById("lastNname").value;
+    userInfo.ctype = document.getElementById("credType").value;
+
+    
+    google.script.run.userClickAddGuest(userInfo);
+    
+    document.getElementById("firstName").value = "";
+    document.getElementById("lastNname").value = "";
+    M.updateTextFields();
+    //create cred type as a varialbe
+    var credTypeSelect = document.getElementById("credType");
+    //set selected index to 0 after data submitted
+    credTypeSelect.selectedIndex = 0;
+    //re-initialize the element after clearing the selected type
+    M.FormSelect.init(credTypeSelect);
+    
+    google.script.run.withSuccessHandler(generateBBTable).getBBTableData();
+    //refreshTable();
+    
+    }
+    
+
+    function generateBBTable(dataArray) {
+      //var tbody = document.getElementById("table-body");
+      $('#tbody').innerHtml = "";
+      $('#table-body').empty();
+      var tbody = document.getElementById("table-body");
+       
+         console.log(tbody);
+        dataArray.forEach(function(r) {
+    
+    var row = document.createElement("tr");
+    var col1= document.createElement("td");
+    col1.textContent = r[0];
+    var col2= document.createElement("td");
+    col2.textContent = r[1];
+    var col3= document.createElement("td");
+    col3.textContent = r[2];
+    var col4= document.createElement("td");
+    col4.textContent = r[3];
+    var col5= document.createElement("td");
+    col5.textContent = r[4];
+    var col6= document.createElement("td");
+    col6.textContent = r[5];
+    tbody.appendChild(col1);
+    tbody.appendChild(col2);
+    tbody.appendChild(col3);
+    tbody.appendChild(col4);
+    tbody.appendChild(col5);
+    tbody.appendChild(col6);
+    tbody.appendChild(row);
+    });
+   google.script.run.withSuccessHandler(generateBBTable).getBBTableData();
+ }
+    
+</script>
