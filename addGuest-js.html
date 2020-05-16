@@ -6,59 +6,59 @@
       document.getElementById("btn").addEventListener("click",btnClickAction);
  
       
-      var selectBoxes = document.querySelectorAll('select');
-      M.FormSelect.init(selectBoxes);  
-      google.script.run.withSuccessHandler(populateDates).getCalendarBusyDays();  
+      //var selectBoxes = document.querySelectorAll('select');
+      //M.FormSelect.init(selectBoxes);  
+      //google.script.run.withSuccessHandler(populateDates).getCalendarBusyDays();  
       
-      google.script.run.withSuccessHandler(populateWords).getWords();
+     // google.script.run.withSuccessHandler(populateWords).getWords();
     
     });
 
-    function populateWords(words){
+    //function populateWords(words){
     
-       var autocomplete = document.getElementById('venue');
-       var instances = M.Autocomplete.init(autocomplete, { data: words });
-    }
+   //    var autocomplete = document.getElementById('venue');
+   //    var instances = M.Autocomplete.init(autocomplete, { data: words });
+  //  }
     
     
-    function populateDates(disabledDays) {
-    var datePicker = document.getElementById('prefDate');
-      M.Datepicker.init(datePicker, {
-             disableDayFn: function(day) { 
-             console.log(day)
-              return disabledDays.indexOf(day.valueOf()) > -1 || day.valueOf() < new Date().valueOf();
-           }      
-      });
+   // function populateDates(disabledDays) {
+   // var datePicker = document.getElementById('prefDate');
+   //   M.Datepicker.init(datePicker, {
+   //          disableDayFn: function(day) { 
+   //          console.log(day)
+   //           return disabledDays.indexOf(day.valueOf()) > -1 || day.valueOf() < new Date().valueOf();
+    //       }      
+   //   });
     
-    }
+  //  }
 
     
     function btnClickAction() {
-       var toValidate = {
-         firstName: "First Name Required",
-         lastNname: "Last Name Required",
-         credType: "Cred Type Required",
-         prefDate: "pick a date",
-         zip: "zip required",
-         est: "Estimate Required"
-       
-       };
-       
-       var idKeys = Object.keys(toValidate);
-       
-       var allValid = true;
-       idKeys.forEach(function(id){
-        var isValid =  checkIfValid(id, toValidate[id]);
-             if (!isValid) {
-             
-             allValid = false;
-             }
- 
-       });
-       if(allValid) {
-       
+//       var toValidate = {
+//         firstName: "First Name Required",
+//         lastNname: "Last Name Required",
+//         credType: "Cred Type Required",
+//        prefDate: "pick a date",
+//         zip: "zip required",
+//         est: "Estimate Required"
+//       
+//       };
+//       
+//       var idKeys = Object.keys(toValidate);
+//       
+//       var allValid = true;
+//       idKeys.forEach(function(id){
+//        var isValid =  checkIfValid(id, toValidate[id]);
+//             if (!isValid) {
+//             
+//             allValid = false;
+//             }
+// 
+//       });
+//       if(allValid) {
+//       
        addName();
-       }
+//       }
     
     }
     
@@ -78,22 +78,22 @@
     userInfo.fname = document.getElementById("firstName").value;
     userInfo.lname = document.getElementById("lastNname").value;
     userInfo.ctype = document.getElementById("credType").value;
-    userInfo.zip = document.getElementById("zip").value;
-    userInfo.est = document.getElementById("est").value;
+    //userInfo.zip = document.getElementById("zip").value;
+   // userInfo.est = document.getElementById("est").value;
     //run the user click pass the array of data.
     google.script.run.userClick(userInfo);
     //clear the fields
     document.getElementById("firstName").value = "";
     document.getElementById("lastNname").value = "";
-    document.getElementById("zip").value = "";
-    document.getElementById("est").value = "";
-    M.updateTextFields();
+    //document.getElementById("zip").value = "";
+   // document.getElementById("est").value = "";
+   // M.updateTextFields();
     //create cred type as a varialbe
     var credTypeSelect = document.getElementById("credType");
     //set selected index to 0 after data submitted
     credTypeSelect.selectedIndex = 0;
     //re-initialize the element after clearing the selected type
-    M.FormSelect.init(credTypeSelect);
+   // M.FormSelect.init(credTypeSelect);
     
     }
     
@@ -108,9 +108,9 @@
       }
     }
     
-    function updateEstimate(cost) {
-            document.getElementById("est").value = cost;
-            M.updateTextFields();
-    
-    }
+  //  function updateEstimate(cost) {
+  //          document.getElementById("est").value = cost;
+  //          M.updateTextFields();
+  //  
+ //   }
     </script>
