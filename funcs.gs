@@ -110,3 +110,19 @@ function getBBTableData() {
      return data;
 }
 
+function loadHome() {
+  var spreadSheet = SpreadsheetApp.openByUrl(url);
+ // var sheets = SpreadsheetApp.getActiveSpreadsheet().getSheets();
+  var sheets = spreadSheet.getSheets();
+  var holderArray = [];
+  for(var i=0; i< sheets.length; i++){
+  var sheetName = sheets[i].getName();
+    holderArray.push(sheetName);
+  }
+  Logger.log(sheets);
+  Logger.log(holderArray);
+  var sheetArray = holderArray.map(function(s){return '<option>' + s[0] + '</option>'; }).join(''); 
+   Logger.log(sheetArray);
+  return render("home", {sheets: sheetArray});
+}
+
