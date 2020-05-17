@@ -17,7 +17,7 @@ function userClick(userInfo){
   var spreadSheet = SpreadsheetApp.openByUrl(url);
   var workSheet = spreadSheet.getSheetByName("Data");
   
-  workSheet.appendRow([userInfo.fname,userInfo.lname,userInfo.ctype,userInfo.zip,userInfo.est,new Date()]);
+  workSheet.appendRow([userInfo.fname,userInfo.lname,userInfo.ctype]);
   
   //Logger.log(name + "Your CLick is My Command");
 
