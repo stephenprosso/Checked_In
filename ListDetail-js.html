@@ -1,0 +1,116 @@
+<script>
+
+ // var data = [
+ //  ["Stpehen","Rosso","God Pass","92108","10","Sboobs"],
+ //   ["Tuna","Rosso","God","92108","10","Sboobs"]
+ 
+ // ];
+ 
+ var checkBoxesUsed = new Set();
+ 
+ 
+ document.addEventListener("DOMContentLoaded", function() {
+ //The google script ill call get table data passing data. on success it will call the generateTable passing the data from data array.
+   
+   google.script.run.withSuccessHandler(generateTable).getTableData();
+  
+ });
+ document.getElementById("checkin").addEventListener("click", checkinGuest);
+ document.getElementById("table-body").addEventListener("click", function(e){
+   if(e.target.classList.contains("cb")){
+     e.target.nextElementSibling.classList.remove("d-none");
+     e.target.nextElementSibling.nextElementSibling.classList.remove("d-none");
+   }
+   if(e.target.classList.contains("classCancel")){
+     e.target.previousElementSibling.previousElementSibling.checked = e.target.dataset.initialState == "true" ? true : false;
+     e.target.classList.add("d-none");
+     e.target.previousElementSibling.classList.add("d-none");
+     
+     }
+ 
+ });
+ 
+ 
+ function checkinGuest(){
+    
+   var checkBoxes = document.getQuerySelectorAll("#table-body .cb");
+   
+ }
+ 
+ 
+ //i dont really understand how we are creating the table and filling in the rows. 
+ //in other project the data returned is in json form.
+ function generateTable(dataArray) {
+
+ var tbody = document.getElementById("table-body");
+    
+    dataArray.forEach(function(r) {
+    
+    var row = document.createElement("tr");
+    var col1= document.createElement("td");
+    col1.textContent = r[0];
+    var col2= document.createElement("td");
+    col2.textContent = r[1];
+    var col3= document.createElement("td");
+    col3.textContent = r[2];
+    var col4= document.createElement("td");
+    col4.textContent = r[3];
+    var col5= document.createElement("td");
+    col5.textContent = r[4];
+    var col6= document.createElement("td");
+    var checkBox = document.createElement("input");
+    checkBox.type = "checkbox";
+    checkBox.value = r[5];
+    checkBox.dataset.recordId = r[0];
+    checkBox.classList.add("cb");
+    //if the r5 = 1 make the check true otherwise it will be false
+    checkBox.checked = r[5] == 1 ? true : false;
+    col6.appendChild(checkBox);
+    var saveButton = document.createElement("button");
+    saveButton.textContent = "Save";
+    saveButton.classList.add("classSave");
+    saveButton.classList.add("ml-2");
+    saveButton.classList.add("d-none");
+    saveButton.dataset.recordId = r[0];
+    var cancelButton = document.createElement("button");
+    cancelButton.textContent = "Cancel";
+    cancelButton.classList.add("classCancel");
+    cancelButton.classList.add("ml-2");
+    cancelButton.classList.add("d-none");
+    cancelButton.dataset.initialState = r[5] == 1 ? true : false;
+    col6.appendChild(saveButton);
+    col6.appendChild(cancelButton);
+    row.appendChild(col1);
+    row.appendChild(col2);
+    row.appendChild(col3);
+    row.appendChild(col4);
+    row.appendChild(col5);    
+    row.appendChild(col6);
+    tbody.appendChild(row);
+    });
+ 
+ }
+ 
+
+ function addRowHandlers() {
+    var table = document.getElementById("tableId");
+    var rows = table.getElementsByTagName("tr");
+    for (i = 0; i < rows.length; i++) {
+        var currentRow = table.rows[i];
+        var createClickHandler =
+            function(row) {
+                return function() {
+                    var fn = row.getElementsByTagName("td")[0];
+                    var ln = row.getElementsByTagName("td")[1];
+                    var id = fn.innerHTML + ln.innerHTML;
+                    alert("id:" + id);
+                    google.script.run.formatMySpreadsheet(id);
+                };
+            };
+
+        currentRow.onclick = createClickHandler(currentRow);
+    }
+}
+window.onload = addRowHandlers();
+</script>
+

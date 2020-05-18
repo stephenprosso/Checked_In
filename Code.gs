@@ -4,15 +4,20 @@ Route.path = function(route,callback){
    Route[route] = callback;
 }
 
+function newSS() {
+  var mySS = SpreadsheetApp.create('newEvent');
+  Logger.log(mySS.getUrl());
+}
 function doGet(e) {
   
   Route.path("addGuest",loadAddGuest);
   Route.path("listDetail",loadListDetail);
   Route.path("editList",loadEditList);
+  Route.path("addEvent", loadAddEvent);
   if(Route[e.parameters.v]) {
   return Route[e.parameters.v]();
   }else {
-   return render("dashboard");
+   return render("Dashboard");
   }
 }
 
@@ -23,14 +28,19 @@ function loadAddGuest() {
   var list = workSheet.getRange(1,1,workSheet.getRange("A1").getDataRegion().getLastRow(),1).getValues();
   var htmlListArray = list.map(function(r){return '<option>' + r[0] + '</option>'; }).join('');  
 
-  return render("addGuest", {list: htmlListArray })
+  return render("AddGuest", {list: htmlListArray })
 
 }
 
 function loadListDetail() {  
-  return render("listDetail");
+  return render("ListDetail");
 }
 
+
+function loadAddEvent() {
+
+  return render("AddEvent");
+}
 
 function loadEditList() {
   var spreadSheet = SpreadsheetApp.openByUrl(url);
@@ -39,8 +49,9 @@ function loadEditList() {
   var htmlListArray = list.map(function(r){return '<option>' + r[0] + '</option>'; }).join('');  
   Logger.log(list);
   Logger.log(htmlListArray);
-  return render("editList", {list: htmlListArray});
+  return render("EditList", {list: htmlListArray});
 }
+
 
 function loadDashboard() {
   var spreadSheet = SpreadsheetApp.openByUrl(url);
@@ -55,7 +66,7 @@ function loadDashboard() {
   Logger.log(holderArray);
   var sheetArray = holderArray.map(function(s){return '<option>' + s[0] + '</option>'; }).join(''); 
    Logger.log(sheetArray);
-  return render("dashboard", {sheets: sheetArray});
+  return render("Dashboard", {sheets: sheetArray});
 }
 
 

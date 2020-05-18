@@ -10,14 +10,29 @@ function userClickAddGuest(userInfo){
 
 }
 
+function updateRecordById(){
+ var id = 3;
+ var spreadSheet = SpreadsheetApp.openByUrl(url);
+ var workSheet = spreadSheet.getSheetByName("Data");
+ var ids = workSheet.getRange(2, 1,workSheet.getLastRow()-1,1).getValues().map(function(r){return r[0]});
+ var positionInArray =  ids.indexOf(id);
+ var rowNumber = positionInArray === -1 ? 0 : positionInArray +2;
+ var oldTimeData = workSheet.getRange(rowNumber,5).getValue();
+}
 
-//pageJS.js functions
+
+//fucntion that adds line
 function userClick(userInfo){
 
   var spreadSheet = SpreadsheetApp.openByUrl(url);
   var workSheet = spreadSheet.getSheetByName("Data");
+  var ids = workSheet.getRange(2, 1,workSheet.getLastRow()-1,1).getValues().map(function(r){return r[0]});
   
-  workSheet.appendRow([userInfo.fname,userInfo.lname,userInfo.ctype]);
+  //find the max id from this list
+  var maxID = Math.max.apply(null,ids);
+  var newID = maxID+1;
+
+  workSheet.appendRow([newID,userInfo.fname,userInfo.lname,userInfo.ctype]);
   
   //Logger.log(name + "Your CLick is My Command");
 

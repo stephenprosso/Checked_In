@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <base target="_top">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--Bootstrap link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <?!= include("ListDetail-css"); ?>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="<?= ScriptApp.getService().getUrl(); ?>">Checked_In</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://docs.google.com/spreadsheets/d/1-6UatdMa_6eXjhzZ-h5Pw2IcjBp_542uNyeIHyjMBfI/edit#gid=0" Target="_blank">Go To Google Sheet</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Add / Edit Lists
+             </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="<?= ScriptApp.getService().getUrl(); ?>?v=addGuest">Add Guest</a>
+                            <a class="dropdown-item" href="<?= ScriptApp.getService().getUrl(); ?>?v=listDetail">List Detail</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="<?= ScriptApp.getService().getUrl(); ?>?v=editList">Edit List</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+        <div>
+            <div class="row form-group">
+                <div class="col-sm-12">
+                <button id="checkin" type="button">Check in Guest</button>
+                    <h1>Guest List Data Table</h1>
+                    <table id="tableId1" class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Cred Type</th>
+                                <th>Time Checked In</th>
+                                <th>Check in Guest</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+
+
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+            <!-- CLOSE ROW -->
+            <div class="row form-group">
+            
+        
+                <div class="col-sm-12">
+                    <table id="tableId" class="table">
+                        <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Cred Type</th>
+                                
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>DANIELLE</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Item </td>
+                                <td>two</td>
+                            </tr>
+                            <tr>
+                                <td>Item three</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- CLOSE ROW -->
+        </div>
+    </div>
+    <!-- CLOSE CONTAINER -->
+
+    <!-- SCRIPT FOR JQUERY -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- SCRIPTS FOR BOOTSTRAP -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <?!= include("ListDetail-js"); ?>
+</body>
+<footer>
+    <div class="container">
+        <div class="d-flex justify-content-center" align="center">
+            <a href="<?= ScriptApp.getService().getUrl(); ?>" id="btn" type="button" class="btn btn-dark">Back to Main Menu</a>
+        </div>
+    </div>
+</footer>
+
+</html>
