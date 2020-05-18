@@ -1,3 +1,4 @@
+
 var url ="https://docs.google.com/spreadsheets/d/1-6UatdMa_6eXjhzZ-h5Pw2IcjBp_542uNyeIHyjMBfI/edit#gid=0";
 var Route = {};
 Route.path = function(route,callback){
@@ -14,8 +15,22 @@ function doGet(e) {
   Route.path("listDetail",loadListDetail);
   Route.path("editList",loadEditList);
   Route.path("addEvent", loadAddEvent);
+  var params = Object.keys(e.parameters).filter(function(p){return p != "v"});
+  
+  var viewParameters = {};
+  params.forEach(function(p){
+  
+    viewParameters[p] = e.parameters[p];
+  
+  });
   if(Route[e.parameters.v]) {
-  return Route[e.parameters.v]();
+    if(params.length == 0){
+     return Route[e.parameters.v]();
+    
+    } else {
+      return Route[e.parameters.v](viewParameters);
+    }
+  
   }else {
    return render("Dashboard");
   }
@@ -32,8 +47,11 @@ function loadAddGuest() {
 
 }
 
-function loadListDetail() {  
+function loadListDetail(params) {  
+  console.log(params);
   return render("ListDetail");
+  
+  
 }
 
 

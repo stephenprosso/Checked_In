@@ -33,7 +33,7 @@ function updateRecordById(recordInfo){
   }
   var newTimeData = [checkInDate,recordInfo.checkInState];  
   workSheet.getRange(rowNumber,5,1,2).setValues([newTimeData]);
-  return workSheet.getRange(rowNumber,5).getDisplayValue();
+  return workSheet.getRange(rowNumber,5,1,2).getDisplayValues()[0];
 }
 
 //fucntion that adds line
@@ -122,11 +122,15 @@ function formatMySpreadsheet(id) {
                                                 
 }
 
-function getTableData() {
+function getTableData(ev) {
 
      var ss = SpreadsheetApp.openByUrl(url);
-     var ws = ss.getSheetByName("Data");
-     var data = ws.getRange(2,1, ws.getLastRow() -1, 6).getDisplayValues();
+     var ws = ss.getSheetByName("Copy of Data");
+     var data = ws.getRange(2,1, ws.getLastRow() -1, 7).getDisplayValues();
+  data = data.filter(function(r){
+     return r[6] == ev;
+  
+  });
      Logger.log("data : " + data);
      return data;
 }

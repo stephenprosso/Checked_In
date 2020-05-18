@@ -8,7 +8,7 @@
 
  document.addEventListener("DOMContentLoaded", function() {
  //The google script ill call get table data passing data. on success it will call the generateTable passing the data from data array.
-   
+   console.log();
    google.script.run.withSuccessHandler(generateTable).getTableData();
   
  });
@@ -29,12 +29,14 @@
        var recordInfo = {};
        recordInfo.id = e.target.dataset.recordId;
        recordInfo.checkInState = e.target.previousElementSibling.checked;
-       google.script.run.withSuccessHandler(function(newDate){
-       var timeStampColumn = e.target.closest(".checkBoxButtons").previousElementSibling;
-         timeStampColumn.textContent = newDate;
-         e.target.classList.add("d-none");
-         e.target.nextElementSibling.classList.add("d-none");
-      
+       document.getElementById("loading").classList.remove("d-none");
+       google.script.run.withSuccessHandler(function(newDate){       
+           e.target.nextElementSibling.dataset.initialState = newDate[1] == "TRUE" ? true : false;
+           var timeStampColumn = e.target.closest(".checkBoxButtons").previousElementSibling;
+           timeStampColumn.textContent = newDate[0];
+            e.target.classList.add("d-none");
+           e.target.nextElementSibling.classList.add("d-none");
+           document.getElementById("loading").classList.add("d-none");
       }).updateRecordById(recordInfo);      
      }  //if we click save
  }); //all event handlers inside the table
