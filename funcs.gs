@@ -10,16 +10,31 @@ function userClickAddGuest(userInfo){
 
 }
 
-function updateRecordById(){
- var id = 3;
+function updateRecordById(recordInfo){
+
+  //var recordInfo = {};
+  //recordInfo.id = 4;
+  //recordInfo.checkInState = false;
+  
+  
  var spreadSheet = SpreadsheetApp.openByUrl(url);
  var workSheet = spreadSheet.getSheetByName("Data");
  var ids = workSheet.getRange(2, 1,workSheet.getLastRow()-1,1).getValues().map(function(r){return r[0]});
- var positionInArray =  ids.indexOf(id);
+ var positionInArray =  ids.indexOf(parseInt(recordInfo.id));
  var rowNumber = positionInArray === -1 ? 0 : positionInArray +2;
  var oldTimeData = workSheet.getRange(rowNumber,5).getValue();
+  var checkInDate;
+  if(recordInfo.checkInState){
+  
+   checkInDate = oldTimeData =="" ? new Date(): oldTimeData;
+  } else {
+  
+  checkInDate = "";
+  }
+  var newTimeData = [checkInDate,recordInfo.checkInState];  
+  workSheet.getRange(rowNumber,5,1,2).setValues([newTimeData]);
+  return workSheet.getRange(rowNumber,5).getDisplayValue();
 }
-
 
 //fucntion that adds line
 function userClick(userInfo){
