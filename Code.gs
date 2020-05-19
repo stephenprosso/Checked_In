@@ -56,7 +56,12 @@ function loadListDetail(params) {
 
 
 function loadAddEvent() {
-
+  var spreadSheet = SpreadsheetApp.openByUrl(url);
+  var workSheet = spreadSheet.getSheetByName("Event");
+ // var list = workSheet.getRange(1,1,workSheet.getRange("A1").getDataRegion().getLastRow(),1).getValues();
+ // var htmlListArray = list.map(function(r){return '<option>' + r[0] + '</option>'; }).join('');  
+  
+  
   return render("AddEvent");
 }
 

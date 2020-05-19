@@ -7,7 +7,8 @@ function userClickAddGuest(userInfo){
   workSheet.appendRow([userInfo.fname,userInfo.lname,userInfo.ctype]);
   
 }
-//change "Copy of Data back to Data" updateRecordById, userClick, getTableData
+
+//1.//change "Copy of Data back to Data" updateRecordById, userClick, getTableData
 function updateRecordById(recordInfo){
    //test data
   //var recordInfo = {};
@@ -20,7 +21,7 @@ function updateRecordById(recordInfo){
  var ids = workSheet.getRange(2, 1,workSheet.getLastRow()-1,1).getValues().map(function(r){return r[0]});
  var positionInArray =  ids.indexOf(parseInt(recordInfo.id));
  var rowNumber = positionInArray === -1 ? 0 : positionInArray +2;
- //old time data is 5 and will need to be moved to 6
+ //2.//old time data is 5 and will need to be moved to 6
   var oldTimeData = workSheet.getRange(rowNumber,6).getValue();
   //old line//var oldTimeData = workSheet.getRange(rowNumber,5).getValue();
  
@@ -33,7 +34,7 @@ function updateRecordById(recordInfo){
   checkInDate = "";
   }
   var newTimeData = [checkInDate,recordInfo.checkInState];  
-  //old time data is 5 and will need to be changed to 6
+  //3.//old time data is 5 and will need to be changed to 6
   workSheet.getRange(rowNumber,6,1,2).setValues([newTimeData]);
    //OLD LINE//workSheet.getRange(rowNumber,5,1,2).setValues([newTimeData]);
  
@@ -43,7 +44,8 @@ function updateRecordById(recordInfo){
   
 }
 
-//fucntion that adds line
+//fucntion that adds line and data to the *"COPY OF DATA"* file for a guest list
+//the max will increase the number are using for an ID.
 function userClick(userInfo){
 
   var spreadSheet = SpreadsheetApp.openByUrl(url);
@@ -64,14 +66,14 @@ function getTableData(ev) {
 
      var ss = SpreadsheetApp.openByUrl(url);
      var ws = ss.getSheetByName("Copy of Data");
-   //the get range is 7 and will need to be changed to 8 to the 8th column that was added
+   //4.//the get range is 7 and will need to be changed to 8 to the 8th column that was added
    //remember that the range starts at column 1 not 0
    var data = ws.getRange(2,1, ws.getLastRow() -1, 8).getDisplayValues();
 
-     //var data = ws.getRange(2,1, ws.getLastRow() -1, 7).getDisplayValues();
+     //5. //var data = ws.getRange(2,1, ws.getLastRow() -1, 7).getDisplayValues();
     data = data.filter(function(r){
-    //in this filter function we need the  column in javascript which starts at 0
-    //the 6 needs to be changed to a 7
+    //6. //in this filter function we need the  column in javascript which starts at 0
+    //6. //the 6 needs to be changed to a 7
     return r[7] == ev;
      //old line//return r[6] == ev;
   
@@ -80,6 +82,21 @@ function getTableData(ev) {
      return data;
 }
 
+function userClickAddEvent(userInfo){
+
+  var spreadSheet = SpreadsheetApp.openByUrl(url);
+  var workSheet = spreadSheet.getSheetByName("Event");
+  var ids = workSheet.getRange(2, 1,workSheet.getLastRow()-1,1).getValues().map(function(r){return r[0]});
+  
+  //find the max id from this list
+  var maxID = Math.max.apply(null,ids);
+  var newID = maxID+1;
+
+  workSheet.appendRow([newID,userInfo.vname,userInfo.ename,new Date()]);
+  
+  //Logger.log(name + "Your CLick is My Command");
+
+}
 
 //**FUNCTIONS NOT IN USE GO BELOW THIS LINE**//
 //table-js.html functions

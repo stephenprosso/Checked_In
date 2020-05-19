@@ -43,8 +43,9 @@
            console.log(timeStampColumn);
            //on 5/19/20 I changed this from newDate[0], to newDate[1]. 
            //this cant be right, the newDate array has the guest list name in it which is wrong
+           //10 MIN LATER I CHANGED IT BACK- this error was from a line in the funcs.GS
            timeStampColumn.textContent = newDate[0];
-            e.target.classList.add("d-none");
+           e.target.classList.add("d-none");
            e.target.nextElementSibling.classList.add("d-none");
            document.getElementById("loading").classList.add("d-none");
       }).updateRecordById(recordInfo);      
