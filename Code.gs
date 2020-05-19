@@ -42,8 +42,13 @@ function loadAddGuest() {
   var workSheet = spreadSheet.getSheetByName("Options");
   var list = workSheet.getRange(1,1,workSheet.getRange("A1").getDataRegion().getLastRow(),1).getValues();
   var htmlListArray = list.map(function(r){return '<option>' + r[0] + '</option>'; }).join('');  
-
-  return render("AddGuest", {list: htmlListArray })
+  
+  var eventws = spreadSheet.getSheetByName("Event");
+  var eventList = eventws.getRange(1,1,workSheet.getRange("A1").getDataRegion().getLastRow(),1).getValues();
+  var htmlEventListArray = eventList.map(function(r){return '<option>' + r[0] + '</option>'; }).join('');  
+  
+  
+  return render("AddGuest", {list: htmlListArray, glist: htmlEventListArray })
 
 }
 

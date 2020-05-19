@@ -92,7 +92,7 @@ function userClickAddEvent(userInfo){
   var maxID = Math.max.apply(null,ids);
   var newID = maxID+1;
 
-  workSheet.appendRow([newID,userInfo.vname,userInfo.ename,new Date()]);
+  workSheet.appendRow([newID,userInfo.vname,userInfo.ename,userInfo.sdate]);
   
   //Logger.log(name + "Your CLick is My Command");
 
