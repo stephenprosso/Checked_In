@@ -32,10 +32,17 @@
        var recordInfo = {};
        recordInfo.id = e.target.dataset.recordId;
        recordInfo.checkInState = e.target.previousElementSibling.checked;
+       console.log(recordInfo.checkInState);
        document.getElementById("loading").classList.remove("d-none");
-       google.script.run.withSuccessHandler(function(newDate){       
+       google.script.run.withSuccessHandler(function(newDate){ 
+       //the below console.log of newDate has the Guest list name as the first key pair value. that is wrong
+       console.log(newDate);
            e.target.nextElementSibling.dataset.initialState = newDate[1] == "TRUE" ? true : false;
+           console.log(e.target.nextElementSibling.dataset.initialState);
            var timeStampColumn = e.target.closest(".checkBoxButtons").previousElementSibling;
+           console.log(timeStampColumn);
+           //on 5/19/20 I changed this from newDate[0], to newDate[1]. 
+           //this cant be right, the newDate array has the guest list name in it which is wrong
            timeStampColumn.textContent = newDate[0];
             e.target.classList.add("d-none");
            e.target.nextElementSibling.classList.add("d-none");

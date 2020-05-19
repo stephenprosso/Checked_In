@@ -22,7 +22,7 @@ function updateRecordById(recordInfo){
  var rowNumber = positionInArray === -1 ? 0 : positionInArray +2;
  //old time data is 5 and will need to be moved to 6
   var oldTimeData = workSheet.getRange(rowNumber,6).getValue();
-  //var oldTimeData = workSheet.getRange(rowNumber,5).getValue();
+  //old line//var oldTimeData = workSheet.getRange(rowNumber,5).getValue();
  
   var checkInDate;
   if(recordInfo.checkInState){
@@ -35,8 +35,12 @@ function updateRecordById(recordInfo){
   var newTimeData = [checkInDate,recordInfo.checkInState];  
   //old time data is 5 and will need to be changed to 6
   workSheet.getRange(rowNumber,6,1,2).setValues([newTimeData]);
-   //workSheet.getRange(rowNumber,5,1,2).setValues([newTimeData]);
-  return workSheet.getRange(rowNumber,5,1,2).getDisplayValues()[0];
+   //OLD LINE//workSheet.getRange(rowNumber,5,1,2).setValues([newTimeData]);
+ 
+  // on 5/19/20 I missed this change to return the correct column for the time data
+  return workSheet.getRange(rowNumber,6,1,2).getDisplayValues()[0];
+ //OLD LINE//return workSheet.getRange(rowNumber,5,1,2).getDisplayValues()[0];
+  
 }
 
 //fucntion that adds line
@@ -69,7 +73,7 @@ function getTableData(ev) {
     //in this filter function we need the  column in javascript which starts at 0
     //the 6 needs to be changed to a 7
     return r[7] == ev;
-     //return r[6] == ev;
+     //old line//return r[6] == ev;
   
   });
      Logger.log("data : " + data);
