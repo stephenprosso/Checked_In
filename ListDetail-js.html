@@ -60,19 +60,35 @@
     col3.textContent = r[2];
     var col4= document.createElement("td");
     col4.textContent = r[3];
+    //copy col 4 and create a new column 5. rename your col-5 and col-6 to col-6 and col-7.
+    //the time and the check box need to side by side time LEFT and check box on RIGHT
     var col5= document.createElement("td");
     col5.textContent = r[4];
-    col5.classList.add("timeStamp");
+    
+    
     var col6= document.createElement("td");
-    col6.classList.add("checkBoxButtons");
+    col6.textContent = r[5];
+    col6.classList.add("timeStamp");
+    var col7= document.createElement("td");
+    col7.classList.add("checkBoxButtons");
     var checkBox = document.createElement("input");
     checkBox.type = "checkbox";
-    checkBox.value = r[5];
+    
+    //check box is in JS column 6 now
+    checkBox.value = r[6];
+    //checkBox.value = r[5];
     checkBox.dataset.recordId = r[0];
     checkBox.classList.add("cb");
     //if the r5 = 1 make the check true otherwise it will be false
-    checkBox.checked = r[5] == "TRUE" ? true : false;
-    col6.appendChild(checkBox);
+    
+    //the check box is in JS column 6 now change from JS column 5
+    checkBox.checked = r[6] == "TRUE" ? true : false;
+    //checkBox.checked = r[5] == "TRUE" ? true : false;
+    
+    //col6 is now col7. append the child to col 7
+    col7.appendChild(checkBox);
+    
+    //old line//col6.appendChild(checkBox);
     var saveButton = document.createElement("button");
     saveButton.textContent = "Save";
     saveButton.classList.add("classSave");
@@ -84,15 +100,23 @@
     cancelButton.classList.add("classCancel");
     cancelButton.classList.add("ml-2");
     cancelButton.classList.add("d-none");
-    cancelButton.dataset.initialState = r[5] == "TRUE" ? true : false;
-    col6.appendChild(saveButton);
-    col6.appendChild(cancelButton);
+    //change initial state to come from r[6] the check box moved from colum 5 to column 6
+    cancelButton.dataset.initialState = r[6] == "TRUE" ? true : false;
+   ///old line/ cancelButton.dataset.initialState = r[5] == "TRUE" ? true : false;
+    
+    //append the child to col 7. col-6 was changed to col-7
+    col7.appendChild(saveButton);
+    col7.appendChild(cancelButton);
+    //col6.appendChild(saveButton);
+    //col6.appendChild(cancelButton);
     row.appendChild(col1);
     row.appendChild(col2);
     row.appendChild(col3);
     row.appendChild(col4);
     row.appendChild(col5);    
     row.appendChild(col6);
+    //add col7 below
+    row.appendChild(col7);
     tbody.appendChild(row);
     });
  

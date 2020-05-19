@@ -6,8 +6,6 @@ function userClickAddGuest(userInfo){
   
   workSheet.appendRow([userInfo.fname,userInfo.lname,userInfo.ctype]);
   
-  //Logger.log(name + "Your CLick is My Command");
-
 }
 //change "Copy of Data back to Data" updateRecordById, userClick, getTableData
 function updateRecordById(recordInfo){
@@ -22,7 +20,10 @@ function updateRecordById(recordInfo){
  var ids = workSheet.getRange(2, 1,workSheet.getLastRow()-1,1).getValues().map(function(r){return r[0]});
  var positionInArray =  ids.indexOf(parseInt(recordInfo.id));
  var rowNumber = positionInArray === -1 ? 0 : positionInArray +2;
- var oldTimeData = workSheet.getRange(rowNumber,5).getValue();
+ //old time data is 5 and will need to be moved to 6
+  var oldTimeData = workSheet.getRange(rowNumber,6).getValue();
+  //var oldTimeData = workSheet.getRange(rowNumber,5).getValue();
+ 
   var checkInDate;
   if(recordInfo.checkInState){
   
@@ -32,7 +33,9 @@ function updateRecordById(recordInfo){
   checkInDate = "";
   }
   var newTimeData = [checkInDate,recordInfo.checkInState];  
-  workSheet.getRange(rowNumber,5,1,2).setValues([newTimeData]);
+  //old time data is 5 and will need to be changed to 6
+  workSheet.getRange(rowNumber,6,1,2).setValues([newTimeData]);
+   //workSheet.getRange(rowNumber,5,1,2).setValues([newTimeData]);
   return workSheet.getRange(rowNumber,5,1,2).getDisplayValues()[0];
 }
 
@@ -51,6 +54,74 @@ function userClick(userInfo){
   
   //Logger.log(name + "Your CLick is My Command");
 
+}
+
+function getTableData(ev) {
+
+     var ss = SpreadsheetApp.openByUrl(url);
+     var ws = ss.getSheetByName("Copy of Data");
+   //the get range is 7 and will need to be changed to 8 to the 8th column that was added
+   //remember that the range starts at column 1 not 0
+   var data = ws.getRange(2,1, ws.getLastRow() -1, 8).getDisplayValues();
+
+     //var data = ws.getRange(2,1, ws.getLastRow() -1, 7).getDisplayValues();
+    data = data.filter(function(r){
+    //in this filter function we need the  column in javascript which starts at 0
+    //the 6 needs to be changed to a 7
+    return r[7] == ev;
+     //return r[6] == ev;
+  
+  });
+     Logger.log("data : " + data);
+     return data;
+}
+
+
+//**FUNCTIONS NOT IN USE GO BELOW THIS LINE**//
+//table-js.html functions
+function formatMySpreadsheet(id) {
+  // Set the background of the row to yellow where id (firstname + last name) = id 
+  Logger.log(id);
+  var ss = SpreadsheetApp.openByUrl(url);
+  var ws = ss.getSheetByName("Data");
+  
+  //var selectedData = ws.getCurrentCell().getValue();
+  var selectedData = ws.getRange(2,1).getValue();
+  Logger.log(selectedData);
+  if (selectedData === id) {
+  //selectedData.setBackground("Yellow");
+    ws.getRange(2,1,2,5).setBackground("Yellow").setFontStyle(null).setFontWeight(null).setFontSize('10').setFontColor('Red');
+  } else { 
+    ws.getRange(2,1,2,5).setBackground("blue").setFontStyle("italic").setFontWeight('Bold').setFontSize('18');
+   }
+  //return data;
+                                                
+}
+
+
+function getBBTableData() {
+
+     var ss = SpreadsheetApp.openByUrl(url);
+     var ws = ss.getSheetByName("BangBang");
+     var data = ws.getRange(2,1, ws.getLastRow() -1, 4).getValues();
+     Logger.log(data);
+     return data;
+}
+
+function loadHome() {
+  var spreadSheet = SpreadsheetApp.openByUrl(url);
+ // var sheets = SpreadsheetApp.getActiveSpreadsheet().getSheets();
+  var sheets = spreadSheet.getSheets();
+  var holderArray = [];
+  for(var i=0; i< sheets.length; i++){
+  var sheetName = sheets[i].getName();
+    holderArray.push(sheetName);
+  }
+  Logger.log(sheets);
+  Logger.log(holderArray);
+  var sheetArray = holderArray.map(function(s){return '<option>' + s[0] + '</option>'; }).join(''); 
+   Logger.log(sheetArray);
+  return render("home", {sheets: sheetArray});
 }
 
 function getCost(zipCode){
@@ -100,63 +171,5 @@ function getWords() {
   
   }); 
    return options;  
-}
-
-//table-js.html functions
-function formatMySpreadsheet(id) {
-  // Set the background of the row to yellow where id (firstname + last name) = id 
-  Logger.log(id);
-  var ss = SpreadsheetApp.openByUrl(url);
-  var ws = ss.getSheetByName("Data");
-  
-  //var selectedData = ws.getCurrentCell().getValue();
-  var selectedData = ws.getRange(2,1).getValue();
-  Logger.log(selectedData);
-  if (selectedData === id) {
-  //selectedData.setBackground("Yellow");
-    ws.getRange(2,1,2,5).setBackground("Yellow").setFontStyle(null).setFontWeight(null).setFontSize('10').setFontColor('Red');
-  } else { 
-    ws.getRange(2,1,2,5).setBackground("blue").setFontStyle("italic").setFontWeight('Bold').setFontSize('18');
-   }
-  //return data;
-                                                
-}
-
-function getTableData(ev) {
-
-     var ss = SpreadsheetApp.openByUrl(url);
-     var ws = ss.getSheetByName("Copy of Data");
-     var data = ws.getRange(2,1, ws.getLastRow() -1, 7).getDisplayValues();
-  data = data.filter(function(r){
-     return r[6] == ev;
-  
-  });
-     Logger.log("data : " + data);
-     return data;
-}
-
-function getBBTableData() {
-
-     var ss = SpreadsheetApp.openByUrl(url);
-     var ws = ss.getSheetByName("BangBang");
-     var data = ws.getRange(2,1, ws.getLastRow() -1, 4).getValues();
-     Logger.log(data);
-     return data;
-}
-
-function loadHome() {
-  var spreadSheet = SpreadsheetApp.openByUrl(url);
- // var sheets = SpreadsheetApp.getActiveSpreadsheet().getSheets();
-  var sheets = spreadSheet.getSheets();
-  var holderArray = [];
-  for(var i=0; i< sheets.length; i++){
-  var sheetName = sheets[i].getName();
-    holderArray.push(sheetName);
-  }
-  Logger.log(sheets);
-  Logger.log(holderArray);
-  var sheetArray = holderArray.map(function(s){return '<option>' + s[0] + '</option>'; }).join(''); 
-   Logger.log(sheetArray);
-  return render("home", {sheets: sheetArray});
 }
 
