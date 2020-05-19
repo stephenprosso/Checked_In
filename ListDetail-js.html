@@ -7,9 +7,12 @@
  // ];
 
  document.addEventListener("DOMContentLoaded", function() {
- //The google script ill call get table data passing data. on success it will call the generateTable passing the data from data array.
-   console.log();
-   google.script.run.withSuccessHandler(generateTable).getTableData();
+     //The google script ill call get table data passing data. on success it will call the generateTable passing the data from data array.
+    google.script.url.getLocation(function(location) { 
+    console.log(location.parameters.event); 
+    google.script.run.withSuccessHandler(generateTable).getTableData(location.parameters.event[0]);
+  
+    });
   
  });
 
@@ -96,25 +99,5 @@
  }
  
 
- function addRowHandlers() {
-    var table = document.getElementById("tableId");
-    var rows = table.getElementsByTagName("tr");
-    for (i = 0; i < rows.length; i++) {
-        var currentRow = table.rows[i];
-        var createClickHandler =
-            function(row) {
-                return function() {
-                    var fn = row.getElementsByTagName("td")[0];
-                    var ln = row.getElementsByTagName("td")[1];
-                    var id = fn.innerHTML + ln.innerHTML;
-                    alert("id:" + id);
-                    google.script.run.formatMySpreadsheet(id);
-                };
-            };
-
-        currentRow.onclick = createClickHandler(currentRow);
-    }
-}
-window.onload = addRowHandlers();
 </script>
 

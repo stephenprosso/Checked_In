@@ -25,12 +25,9 @@
                         <a class="nav-link" href="https://docs.google.com/spreadsheets/d/1-6UatdMa_6eXjhzZ-h5Pw2IcjBp_542uNyeIHyjMBfI/edit#gid=0" Target="_blank">Go To Google Sheet</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-               Add / Edit Lists
-             </a>
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add / Edit Lists</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="<?= ScriptApp.getService().getUrl(); ?>?v=addGuest">Add Guest</a>
-                            <a class="dropdown-item" href="<?= ScriptApp.getService().getUrl(); ?>?v=listDetail">List Detail</a>
                             <a class="dropdown-item" href="<?= ScriptApp.getService().getUrl(); ?>?v=editList">Edit List</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="<?= ScriptApp.getService().getUrl(); ?>?v=addEvent">Add Event</a>
@@ -45,36 +42,20 @@
             <div class="col-sm-12">
                 <h1>Dashboard</h1>
                 <a href="<?= ScriptApp.getService().getUrl(); ?>?v=addGuest" id="btn" role="button" class="btn btn-dark">Add Guests</a>
-                <a href="<?= ScriptApp.getService().getUrl(); ?>?v=listDetail" id="btn" role="button" class="btn btn-dark">Show Guest List</a>
                 <a href="<?= ScriptApp.getService().getUrl(); ?>?v=editList" id="btn" role="button" class="btn btn-dark">Edit Guest List</a>
-
-
+                <a href="<?= ScriptApp.getService().getUrl(); ?>?v=listDetail&event=1" id="btn" role="button" class="btn btn-dark">event 1</a>
+                <a href="<?= ScriptApp.getService().getUrl(); ?>?v=listDetail&event=2" id="btn" role="button" class="btn btn-dark">event 2</a>  
             </div>
             <div class="col-sm-12" align="left">
                 <h3>Current Events</h3>
             </div>
             <div class="col-sm-12" align="left">
                 <ul>
-                    <li>1. In this are I need to have an HTML table of events.</li>
-                    <li>2. The events are sheets in the Spreadsheet. </li>
-                    <li>3. I have an array of the sheets but I cannot get them displayed</li>
-
-                    <li>4. Operator needs to be able to select a row or event from the table and see the names on the specific events guests list</li>
-                    <li>5. currently I just have the page with 1 guest list displayed.</li>
+                    <li>links to pages will go here</li>                 
                 </ul>
             </div>
         </div>
-        <!-- CLOSE ROW -->
-        <!--     <div class="row" align="center">
-         <div class="input-field col s3">
-                <select id="credType">
-                <option disabled selected>-Select Cred Type-</option>
-           
-                 </select>
-                <label>Credential Type</label>
-            </div>        
-        </div> CLOSE ROW -->
-        <!-- CLOSE ROW -->
+        <!-- CLOSE ROW -->       
     </div>
     <!-- CLOSE CONTAINER -->
 

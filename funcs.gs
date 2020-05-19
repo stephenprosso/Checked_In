@@ -9,16 +9,16 @@ function userClickAddGuest(userInfo){
   //Logger.log(name + "Your CLick is My Command");
 
 }
-
+//change "Copy of Data back to Data" updateRecordById, userClick, getTableData
 function updateRecordById(recordInfo){
-
+   //test data
   //var recordInfo = {};
   //recordInfo.id = 4;
   //recordInfo.checkInState = false;
   
   
  var spreadSheet = SpreadsheetApp.openByUrl(url);
- var workSheet = spreadSheet.getSheetByName("Data");
+ var workSheet = spreadSheet.getSheetByName("Copy of Data");
  var ids = workSheet.getRange(2, 1,workSheet.getLastRow()-1,1).getValues().map(function(r){return r[0]});
  var positionInArray =  ids.indexOf(parseInt(recordInfo.id));
  var rowNumber = positionInArray === -1 ? 0 : positionInArray +2;
@@ -40,7 +40,7 @@ function updateRecordById(recordInfo){
 function userClick(userInfo){
 
   var spreadSheet = SpreadsheetApp.openByUrl(url);
-  var workSheet = spreadSheet.getSheetByName("Data");
+  var workSheet = spreadSheet.getSheetByName("Copy of Data");
   var ids = workSheet.getRange(2, 1,workSheet.getLastRow()-1,1).getValues().map(function(r){return r[0]});
   
   //find the max id from this list
