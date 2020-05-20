@@ -27,11 +27,16 @@
     col3.textContent = r[2];
     var col4= document.createElement("td");
     col4.textContent = r[3];
+    var col5= document.createElement("td");
+    var viewListButton = document.createElement("button");
+    viewListButton.textContent = "View List";
+    viewListButton.classList.add("classViewList");
+    col5.appendChild(viewListButton);  
     row.appendChild(col1);
     row.appendChild(col2);
     row.appendChild(col3);
     row.appendChild(col4);
-
+    row.appendChild(col5);
     tbody.appendChild(row);
     });
     // need to call Google script to refresh grid 
