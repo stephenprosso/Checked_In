@@ -43,6 +43,7 @@
         </nav>
     </div>
     <div class="container">
+     
         <div class="row" align="center">
             <div class="col-sm-12">
                 <h2>Add Guest</h2>
@@ -64,22 +65,24 @@
             <!-- CLOSE ROW -->
 
             <div class="row form-group">
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <label>Credential Type</label>
                     <select id="credType" class="form-control" required>
                 <option disabled selected>-Select Cred Type-</option>
                   <?!= list; ?>
                  </select>
                 </div>
-                 <div class="col-sm-3">
+                 <div class="col-sm-4">
                     <label>Select Event</label>
-                    <select id="guestList" class="form-control" required>
+                    <select id="eventList" class="form-control" required>
                 <option disabled selected>-Event-</option>
                  <?!= glist; ?>
                  </select>
                 </div>
-                <div class="col-sm-3">
-                    <button id="btn" type="button" class="align-bottom btn btn-dark">Add Guest</button>
+                <div class="col-sm-4">
+                  <label for="organization">Organization</label>
+                  <input id="organization" type="text" class="form-control validate" required>
+
                 </div>
             </div>
 
@@ -104,9 +107,16 @@
 </body>
 <footer>
     <div class="container">
-        <div class="d-flex justify-content-center" align="center">
-            <a href="<?= ScriptApp.getService().getUrl(); ?>" id="btn" type="button" class="btn btn-dark">Back to Main Menu</a>
-        </div>
+        <div class="row d-flex justify-content-center" align="center">
+         <div class="col-sm-6">
+          <button id="btn" type="button" class="align-bottom btn btn-dark">Add Guest</button>
+        
+             </div>
+         <div class="col-sm-6">
+         <a href="<?= ScriptApp.getService().getUrl(); ?>" id="btn" type="button" class="btn btn-dark">Back to Main Menu</a>
+      
+          </div>
+       </div>  
     </div>
 </footer>
 

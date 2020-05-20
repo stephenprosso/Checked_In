@@ -46,8 +46,8 @@ function loadAddGuest() {
   var eventws = spreadSheet.getSheetByName("Event");
   var eventList = eventws.getRange(2,1,workSheet.getLastRow(),4).getValues();
   
-  var htmlEventListArray = eventList.map(function(r){return '<option value=\"' + r[0] + '\">'+ r[1] + ' '+ r[2] +'</option>'; }).join('');  
-  
+  var htmlEventListArray = eventList.map(function(r){return '<option value=\"' + r[0] + '\">'+ r[2] + ' '+ r[1] +'</option>'; }).join('');  
+ 
   //var htmlEventListArray = eventList.map(function(r){return '<option>'+ ' ' + r[0] + ' ' + r[1] + ' '+ r[2] +' '+ r[3] + '</option>'; }).join('');  
 
   //var ids = workSheet.getRange(2, 1,workSheet.getLastRow()-1,1).getValues().map(function(r){return r[0]});

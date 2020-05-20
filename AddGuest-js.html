@@ -78,7 +78,9 @@
     userInfo.fname = document.getElementById("firstName").value;
     userInfo.lname = document.getElementById("lastNname").value;
     userInfo.ctype = document.getElementById("credType").value;
-    userInfo.eventID  = document.getElementById("guestList").value;
+    userInfo.eventID  = document.getElementById("eventList").value;
+    userInfo.org  = document.getElementById("organization").value;
+    
     //userInfo.eventString  = document.getElementById("guestList");
     
     
@@ -96,6 +98,7 @@
     //clear the fields
     document.getElementById("firstName").value = "";
     document.getElementById("lastNname").value = "";
+    document.getElementById("organization").value = "";
     //document.getElementById("zip").value = "";
    // document.getElementById("est").value = "";
    // M.updateTextFields();
@@ -103,7 +106,7 @@
     var credTypeSelect = document.getElementById("credType");
     //set selected index to 0 after data submitted
     credTypeSelect.selectedIndex = 0;
-     var guestListSelect = document.getElementById("guestList");
+     var guestListSelect = document.getElementById("eventList");
     //set selected index to 0 after data submitted
     guestListSelect.selectedIndex = 0;
     //re-initialize the element after clearing the selected type
