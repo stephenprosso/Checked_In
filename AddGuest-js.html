@@ -78,13 +78,16 @@
     userInfo.fname = document.getElementById("firstName").value;
     userInfo.lname = document.getElementById("lastNname").value;
     userInfo.ctype = document.getElementById("credType").value;
-    var eventString = document.getElementById("guestList").value;
+    userInfo.eventID  = document.getElementById("guestList").value;
+    //userInfo.eventString  = document.getElementById("guestList");
     
-    console.log(eventString[0]);
-    userInfo.glist = eventString[5];
-    userInfo.eventID = eventString[0];
-    userInfo.checkinDate = '';
-    userInfo.checkBox = false;
+    
+    console.log(userInfo.eventID);
+    //console.log(userInfo.eventString);
+    //userInfo.glist = eventString[5];
+    //userInfo.eventID = eventString[0];
+      userInfo.checkinDate = '';
+      userInfo.checkBox = false;
     
     //userInfo.zip = document.getElementById("zip").value;
    // userInfo.est = document.getElementById("est").value;
