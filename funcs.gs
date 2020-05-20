@@ -1,12 +1,12 @@
 //editList-js.html functions
-function userClickAddGuest(userInfo){
+//function userClickAddGuest(userInfo){
 
-  var spreadSheet = SpreadsheetApp.openByUrl(url);
-  var workSheet = spreadSheet.getSheetByName("BangBang");
+//  var spreadSheet = SpreadsheetApp.openByUrl(url);
+//  var workSheet = spreadSheet.getSheetByName("BangBang");
   
-  workSheet.appendRow([userInfo.fname,userInfo.lname,userInfo.ctype]);
+//  workSheet.appendRow([userInfo.fname,userInfo.lname,userInfo.ctype]);
   
-}
+//}
 
 //1.//change "Copy of Data back to Data" updateRecordById, userClick, getTableData
 function updateRecordById(recordInfo){
@@ -56,7 +56,8 @@ function userClick(userInfo){
   var maxID = Math.max.apply(null,ids);
   var newID = maxID+1;
 
-  workSheet.appendRow([newID,userInfo.fname,userInfo.lname,userInfo.ctype]);
+  workSheet.appendRow([newID, userInfo.fname, userInfo.lname, userInfo.ctype, userInfo.glist, userInfo.checkinDate, userInfo.checkBox, userInfo.eventID]);
+
   
   //Logger.log(name + "Your CLick is My Command");
 
