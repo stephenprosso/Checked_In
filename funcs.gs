@@ -1,14 +1,6 @@
-//editList-js.html functions
-//function userClickAddGuest(userInfo){
-
-//  var spreadSheet = SpreadsheetApp.openByUrl(url);
-//  var workSheet = spreadSheet.getSheetByName("BangBang");
-  
-//  workSheet.appendRow([userInfo.fname,userInfo.lname,userInfo.ctype]);
-  
-//}
-
 //1.//change "Copy of Data back to Data" updateRecordById, userClick, getTableData
+
+//**** ListDetail-js.html function  ****//
 function updateRecordById(recordInfo){
    //test data
   //var recordInfo = {};
@@ -44,6 +36,7 @@ function updateRecordById(recordInfo){
   
 }
 
+//**** AddGuest-js.html functions ****//
 //fucntion that adds line and data to the *"COPY OF DATA"* file for a guest list
 //the max will increase the number are using for an ID.
 function userClick(userInfo){
@@ -62,14 +55,14 @@ function userClick(userInfo){
   //Logger.log(name + "Your CLick is My Command");
 
 }
-
+//**** LIST DETAIL JS FUNCTION ****//
 function getTableData(ev) {
 
      var ss = SpreadsheetApp.openByUrl(url);
      var ws = ss.getSheetByName("Copy of Data");
-   //4.//the get range is 7 and will need to be changed to 8 to the 8th column that was added
-   //remember that the range starts at column 1 not 0
-   var data = ws.getRange(2,1, ws.getLastRow() -1, 8).getDisplayValues();
+     //4.//the get range is 7 and will need to be changed to 8 to the 8th column that was added
+     //remember that the range starts at column 1 not 0
+     var data = ws.getRange(2,1, ws.getLastRow() -1, 8).getDisplayValues();
 
      //5. //var data = ws.getRange(2,1, ws.getLastRow() -1, 7).getDisplayValues();
     data = data.filter(function(r){
@@ -82,7 +75,7 @@ function getTableData(ev) {
      Logger.log("data : " + data);
      return data;
 }
-
+//**** AddEvent-js.html function ****//
 function userClickAddEvent(userInfo){
 
   var spreadSheet = SpreadsheetApp.openByUrl(url);
@@ -98,6 +91,17 @@ function userClickAddEvent(userInfo){
   //Logger.log(name + "Your CLick is My Command");
 
 }
+
+function getEventTableData() {
+  
+  var ss = SpreadsheetApp.openByUrl(url);
+  var ws = ss.getSheetByName("Event");
+  var data = ws.getRange(2,1,ws.getLastRow()-1,4).getDisplayValues();
+  Logger.log(data);
+  return data;
+
+}
+
 
 //**FUNCTIONS NOT IN USE GO BELOW THIS LINE**//
 //table-js.html functions
