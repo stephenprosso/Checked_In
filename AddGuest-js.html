@@ -4,7 +4,7 @@
     
       //add event listner to the btn. when user clicks it will call the function add name
       document.getElementById("btn").addEventListener("click",btnClickAction);
- 
+      $('.toast').toast('show');
       
       //var selectBoxes = document.querySelectorAll('select');
       //M.FormSelect.init(selectBoxes);  
@@ -34,31 +34,31 @@
 
     
     function btnClickAction() {
-//       var toValidate = {
-//         firstName: "First Name Required",
-//         lastNname: "Last Name Required",
-//         credType: "Cred Type Required",
-//        prefDate: "pick a date",
-//         zip: "zip required",
-//         est: "Estimate Required"
-//       
-//       };
-//       
-//       var idKeys = Object.keys(toValidate);
-//       
-//       var allValid = true;
-//       idKeys.forEach(function(id){
-//        var isValid =  checkIfValid(id, toValidate[id]);
-//             if (!isValid) {
-//             
-//             allValid = false;
-//             }
-// 
-//       });
-//       if(allValid) {
-//       
-       addName();
-//       }
+       var toValidate = {
+         firstName: "First Name Required",
+         lastNname: "Last Name Required",
+         credType: "Cred Type Required",
+         eventList: "Select Event Required"
+        
+       
+       };
+      
+       var idKeys = Object.keys(toValidate);
+       
+       var allValid = true;
+       idKeys.forEach(function(id){
+        var isValid =  checkIfValid(id, toValidate[id]);
+             if (!isValid) {
+             
+             allValid = false;
+             }
+ 
+       });
+       
+       if(allValid) {
+       
+     addName();
+       }
     
     }
     
@@ -66,7 +66,7 @@
       var isValid = document.getElementById(elID).checkValidity();
     
     if(!isValid){
-       M.toast({html: message});
+      $('.toast').toast('show');
        return false;
       } 
      return true;

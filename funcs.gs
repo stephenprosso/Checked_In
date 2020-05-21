@@ -1,5 +1,4 @@
 //1.//change "Copy of Data back to Data" updateRecordById, userClick, getTableData
-
 //**** ListDetail-js.html function  ****//
 function updateRecordById(recordInfo){
    //test data
@@ -88,10 +87,10 @@ function userClickAddEvent(userInfo){
 
   workSheet.appendRow([newID,userInfo.vname,userInfo.ename,userInfo.sdate]);
   
-  //Logger.log(name + "Your CLick is My Command");
 
 }
 
+//**** Dashboard-js.html functions ****//
 function getEventTableData() {
   
   var ss = SpreadsheetApp.openByUrl(url);
