@@ -8,8 +8,26 @@
    
     }); 
     
+ document.getElementById("table-body").addEventListener("click", function(e){
+ 
+   if(e.target.classList.contains("classViewList")){
+      var recordID = e.target.dataset.recordId;
+      console.log(recordID);
+      
+      goToListDetails(recordID);
+   }     
+  
+ }); //all event handlers inside the table
 
-    function generateEventTable(dataArray) {
+function goToListDetails(id){
+
+
+
+
+
+}
+
+function generateEventTable(dataArray) {
     // THE BELOW CODE is used to clear out the div to refresh table without refreshign the page. need to call the googe script run again at bottom
     //  $('#tbody').innerHtml = "";
     //  $('#table-body').empty();
@@ -28,10 +46,15 @@
     var col4= document.createElement("td");
     col4.textContent = r[3];
     var col5= document.createElement("td");
-    var viewListButton = document.createElement("button");
-    viewListButton.textContent = "View List";
-    viewListButton.classList.add("classViewList");
-    col5.appendChild(viewListButton);  
+    var viewListAnchor = document.createElement("a");
+    viewListAnchor.text = "View List";
+    viewListAnchor.classList.add("classViewList");
+    viewListAnchor.dataset.recordId = r[0];
+    viewListAnchor.setAttribute
+    viewListAnchor.setAttribute('href', "https://script.google.com/a/mylifeeveryday.com/macros/s/AKfycbxZSBXq4P1RTQNCujQhV-qmKTllqJZ_9zTUe5uOgPy6/dev?v=listDetail&event=" + r[0]);
+    viewListAnchor.innerText = "View List";
+    console.log(viewListAnchor.href);
+    col5.appendChild(viewListAnchor);  
     row.appendChild(col1);
     row.appendChild(col2);
     row.appendChild(col3);
