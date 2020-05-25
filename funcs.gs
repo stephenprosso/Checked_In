@@ -79,14 +79,10 @@ function getTableData(ev) {
 function getTableTitle(ev) {
 
    var ss = SpreadsheetApp.openByUrl(url);
-   var ws = ss.getSheetByName("Copy Of Data");
-   var data = ws.getRange(2,1, ws.getLastRow() - 1,8).getValues(); 
+   var ws = ss.getSheetByName("Event");
+   var data = ws.getRange(2,1, ws.getLastRow() - 1,4).getValues(); 
    //data = data.filter(function(r){return r[7] ==ev});
-   var gridTitleArray = data.map(function(){return r[2] + " @ " + r[1]});
-   
-  //**need to learn how to use filter and map in the same function
-  //data = data.filter(function(r){
-   //return r[7] == ev;
+   var gridTitleArray = data.map(function(r){return r[2] + " @ " + r[1] + " - " + r[3] + " #" + r[0]});
    Logger.log(gridTitleArray);
    return gridTitleArray;
    
