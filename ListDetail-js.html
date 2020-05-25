@@ -8,8 +8,10 @@
     document.addEventListener("DOMContentLoaded", function() {
         //The google script ill call get table data passing data. on success it will call the generateTable passing the data from data array.
         google.script.url.getLocation(function(location) {
-            console.log(location.parameters.event);
+            console.log(location.parameters.event[0]);
             google.script.run.withSuccessHandler(generateTable).getTableData(location.parameters.event[0]);
+            google.script.run.withSuccessHandler(generateTableTitle).getTableTitle(location.parameters.event[0]);
+            
 
         });
 
@@ -66,10 +68,16 @@
     }); //all event handlers inside the table
 
 
+
+function generateTableTitle(title) {
+
+ console.log(title);
+
+}
     function generateTable(dataArray) {
 
         var tbody = document.getElementById("table-body");
-
+        
         dataArray.forEach(function(r) {
 
             var row = document.createElement("tr");
