@@ -42,7 +42,7 @@ function generateEventTable(dataArray) {
               viewListAnchor.dataset.recordId = r[0];
               viewListAnchor.setAttribute('href', "https://script.google.com/a/mylifeeveryday.com/macros/s/AKfycbxZSBXq4P1RTQNCujQhV-qmKTllqJZ_9zTUe5uOgPy6/dev?v=listDetail&event=" + r[0]);
               viewListAnchor.innerText = "View List";
-              viewListAnchor.setAttribute("role", "button");
+              viewListAnchor.setAttribute("type", "button");
               console.log(viewListAnchor.href);
               col5.appendChild(viewListAnchor);  
               row.appendChild(col1);

@@ -1,13 +1,24 @@
 <script>
   
   document.addEventListener('DOMContentLoaded', function() {
-      //var selectBoxes = document.querySelectorAll('select');
-     // M.FormSelect.init(selectBoxes);  
-    //The google script ill call get table data passing data. on success it will call the generateTable passing the data from data array.
-   google.script.run.withSuccessHandler(generateBBTable).getBBTableData();
+      //The google script ill call get table data passing data. on success it will call the generateTable passing the data from data array.
+           google.script.url.getLocation(function(location) {
+            console.log(location.parameters.event[0]);
+            google.script.run.withSuccessHandler(generateTable).getTableData(location.parameters.event[0]);
+            google.script.run.withSuccessHandler(generateTableTitle).getTableTitle(location.parameters.event[0]);
+
+        });   
    
     }); 
     
+   function generateTableTitle(title) {
+
+      console.log(title);
+
+      document.getElementById("title").innerHTML = title;
+ 
+
+}
    
     document.getElementById("btn").addEventListener("click",addGuest); 
     function addGuest(){

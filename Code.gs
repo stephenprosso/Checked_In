@@ -41,7 +41,7 @@ function loadAddGuest() {
   var htmlListArray = list.map(function(r){return '<option>' + r[0] + '</option>'; }).join('');  
   
   var eventws = spreadSheet.getSheetByName("Event");
-  var eventList = eventws.getRange(2,1,9,4).getValues();
+  var eventList = eventws.getRange(2,1,eventws.getLastRow()-1,4).getValues();
  
   // var eventList = eventws.getRange(2,1,workSheet.getRange("A2").getDataRegion().getLastRow(),4).getValues();
   
@@ -81,24 +81,6 @@ function loadEditList() {
   Logger.log(htmlListArray);
   return render("EditList", {list: htmlListArray});
 }
-
-
-function loadDashboard() {
-  var spreadSheet = SpreadsheetApp.openByUrl(url);
- // var sheets = SpreadsheetApp.getActiveSpreadsheet().getSheets();
-  var sheets = spreadSheet.getSheets();
-  var holderArray = [];
-  for(var i=0; i< sheets.length; i++){
-  var sheetName = sheets[i].getName();
-    holderArray.push(sheetName);
-  }
-  Logger.log(sheets);
-  Logger.log(holderArray);
-  var sheetArray = holderArray.map(function(s){return '<option>' + s[0] + '</option>'; }).join(''); 
-   Logger.log(sheetArray);
-  return render("Dashboard", {sheets: sheetArray});
-}
-
 
 
 

@@ -32,15 +32,7 @@
                      </li>
                      <li class="nav-item">
                        <a class="nav-link" href="<?= ScriptApp.getService().getUrl(); ?>?v=addGuest">Add Guest</a>  
-                     </li>
-               <!-- <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add / Edit Lists</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="<?= ScriptApp.getService().getUrl(); ?>?v=addGuest">Add Guest</a>
-                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="<?= ScriptApp.getService().getUrl(); ?>?v=addEvent">Add Event</a>
-                        </div>
-                    </li> -->
+                     </li>              
                 </ul>
             </div>
         </nav>
@@ -55,17 +47,22 @@
         </div>
         <form>
             <div class="row form-group">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <label for="firstName">First Name</label>
                     <input id="firstName" type="text" class="form-control validate" required>
 
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <label for="lastNname">Last Name</label>
                     <input id="lastNname" type="text" class="form-control validate" required>
 
                 </div>
-            </div>
+               <div class="col-sm-4">
+                   <label for="organization">Organization</label>
+                   <input id="organization" type="text" class="form-control validate" required>
+
+              </div>
+          </div>
             <!-- CLOSE ROW -->
 
             <div class="row form-group">
@@ -79,13 +76,13 @@
                  <div class="col-sm-4">
                     <label>Select Event</label>
                     <select id="eventList" class="form-control" required>
-                <option disabled selected>-Event-</option>
+                <option selected disabled>-Event-</option>
                  <?!= glist; ?>
                  </select>
                 </div>
                 <div class="col-sm-4">
-                  <label for="organization">Organization</label>
-                  <input id="organization" type="text" class="form-control validate" required>
+                   <label for="addGuest">Additional Guests</label>
+                   <input id="addGuest" type="text" class="form-control validate" disabled>
 
                 </div>
             </div>
