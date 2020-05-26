@@ -80,16 +80,13 @@ function getTableTitle(ev) {
 
   var ss = SpreadsheetApp.openByUrl(url);
   var ws = ss.getSheetByName("Event");
-  var data = ws.getRange(2,1, ws.getLastRow() - 1,4).getValues(); 
-  //data = data.filter(function(r){return r[7] ==ev});
-  
+  var data = ws.getRange(2,1, ws.getLastRow() - 1,4).getValues();  
   var gridTitleArray = data.filter(function(r){return r[0] == ev;}).map(function(r){return r[2] + " @ " + r[1] + " - " + r[3]});
   
   
   Logger.log(gridTitleArray);
   return gridTitleArray;
    
-  
 }
 
 //**** AddEvent-js.html function ****//

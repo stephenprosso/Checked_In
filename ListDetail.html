@@ -13,6 +13,7 @@
 
 <body>
     <div class="container">
+       <!-- Start Nav Bar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="<?= ScriptApp.getService().getUrl(); ?>">Checked_In</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,25 +22,31 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="https://docs.google.com/spreadsheets/d/1-6UatdMa_6eXjhzZ-h5Pw2IcjBp_542uNyeIHyjMBfI/edit#gid=0" Target="_blank">Go To Google Sheet</a>
+                        <a class="nav-link" href="https://docs.google.com/spreadsheets/d/1-6UatdMa_6eXjhzZ-h5Pw2IcjBp_542uNyeIHyjMBfI/edit#gid=0" Target="_blank">Go To Google Sheet</a>                      
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item">
+                       <a class="nav-link" href="<?= ScriptApp.getService().getUrl(); ?>?v=addEvent">Add Event</a>  
+                     </li>
+                     <li class="nav-item">
+                       <a class="nav-link" href="<?= ScriptApp.getService().getUrl(); ?>?v=addGuest">Add Guest</a>  
+                     </li>
+               <!-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add / Edit Lists</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="<?= ScriptApp.getService().getUrl(); ?>?v=addGuest">Add Guest</a>
-                            <a class="dropdown-item" href="<?= ScriptApp.getService().getUrl(); ?>?v=listDetail">List Detail</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="<?= ScriptApp.getService().getUrl(); ?>?v=editList">Edit List</a>
+                             <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="<?= ScriptApp.getService().getUrl(); ?>?v=addEvent">Add Event</a>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </nav>
+      <!-- End Nav Bar -->  
     </div>
     <div class="container">
             <div class="row form-group">
                 <div class="col-sm-12">
-                 <h3 id = "title"></h3>   
+                 <h3 id = "title" class="pt-2"></h3>   
                     <table id="tableId1" class="table">
                         <thead>
                             <tr>
