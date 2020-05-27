@@ -4,7 +4,7 @@
       //The google script ill call get table data passing data. on success it will call the generateTable passing the data from data array.
            google.script.url.getLocation(function(location) {
             console.log(location.parameters.event[0]);
-            google.script.run.withSuccessHandler(generateTable).getTableData(location.parameters.event[0]);
+            google.script.run.withSuccessHandler(generateEditTable).getEditList(location.parameters.event[0]);
             google.script.run.withSuccessHandler(generateTableTitle).getTableTitle(location.parameters.event[0]);
 
         });   
@@ -46,38 +46,43 @@
     
     }
     
+ 
+ function generateEditTable(dataArray) {
 
-    function generateBBTable(dataArray) {
-      //var tbody = document.getElementById("table-body");
-      $('#tbody').innerHtml = "";
-      $('#table-body').empty();
-      var tbody = document.getElementById("table-body");
-       
-         console.log(tbody);
+        var tbody = document.getElementById("table-body");
+        
         dataArray.forEach(function(r) {
-    
-    var row = document.createElement("tr");
-    var col1= document.createElement("td");
-    col1.textContent = r[0];
-    var col2= document.createElement("td");
-    col2.textContent = r[1];
-    var col3= document.createElement("td");
-    col3.textContent = r[2];
-    var col4= document.createElement("td");
-    col4.textContent = r[3];
-    var col5= document.createElement("td");
-    col5.textContent = r[4];
-    var col6= document.createElement("td");
-    col6.textContent = r[5];
-    tbody.appendChild(col1);
-    tbody.appendChild(col2);
-    tbody.appendChild(col3);
-    tbody.appendChild(col4);
-    tbody.appendChild(col5);
-    tbody.appendChild(col6);
-    tbody.appendChild(row);
-    });
-   google.script.run.withSuccessHandler(generateBBTable).getBBTableData();
- }
+
+            var row = document.createElement("tr");
+            var col1 = document.createElement("td");
+            col1.textContent = r[0];
+            var col2 = document.createElement("td");
+            col2.textContent = r[1];
+            var col3 = document.createElement("td");
+            col3.textContent = r[2];
+            var col4 = document.createElement("td");
+            col4.textContent = r[3];
+            var col5 = document.createElement("td");
+            col5.textContent = r[4];
+            var col6 = document.createElement("td");
+            col6.classList.add("deleteButton");
+            var deleteButton = document.createElement("button");
+            deleteButton.type = "button";
+            deleteButton.classList.add("ml-2");
+            deleteButton.classList.add("btn-dark");
+            
+            deleteButton.innerText="Delete";
+            deleteButton.dataset.recordId = r[0];           
+            col6.appendChild(deleteButton);
+            row.appendChild(col1);
+            row.appendChild(col2);
+            row.appendChild(col3);
+            row.appendChild(col4);
+            row.appendChild(col5);
+            row.appendChild(col6);
+            tbody.appendChild(row);
+        });
+
+    }
     
 </script>

@@ -117,6 +117,26 @@ function getEventTableData() {
 }
 
 
+function getEditList(ev) {
+
+     var ss = SpreadsheetApp.openByUrl(url);
+     var ws = ss.getSheetByName("Copy of Data");
+     //4.//the get range is 7 and will need to be changed to 8 to the 8th column that was added
+     //remember that the range starts at column 1 not 0
+     var data = ws.getRange(2,1, ws.getLastRow() -1, 8).getDisplayValues();
+
+     //5. //var data = ws.getRange(2,1, ws.getLastRow() -1, 7).getDisplayValues();
+    data = data.filter(function(r){
+    //6. //in this filter function we need the  column in javascript which starts at 0
+    //6. //the 6 needs to be changed to a 7
+    return r[7] == ev;
+     //old line//return r[6] == ev;
+  
+  });
+     Logger.log("data : " + data);
+     return data;
+}
+
 //**FUNCTIONS NOT IN USE GO BELOW THIS LINE**//
 //table-js.html functions
 function formatMySpreadsheet(id) {
