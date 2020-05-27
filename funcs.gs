@@ -137,6 +137,23 @@ function getEditList(ev) {
      return data;
 }
 
+function userClickAddGuest(userInfo){
+
+  var spreadSheet = SpreadsheetApp.openByUrl(url);
+  var workSheet = spreadSheet.getSheetByName("Copy of Data");
+  var ids = workSheet.getRange(2, 1,workSheet.getLastRow()-1,1).getValues().map(function(r){return r[0]});
+  
+  //find the max id from this list
+  var maxID = Math.max.apply(null,ids);
+  var newID = maxID+1;
+//this needs to be changed to send the event id as a parameter received from userInfo
+  workSheet.appendRow([newID, userInfo.fname, userInfo.lname, userInfo.ctype, userInfo.org, userInfo.checkinDate, userInfo.checkBox, userInfo.eventID]);
+
+  
+  //Logger.log(name + "Your CLick is My Command");
+
+}
+
 //**FUNCTIONS NOT IN USE GO BELOW THIS LINE**//
 //table-js.html functions
 function formatMySpreadsheet(id) {

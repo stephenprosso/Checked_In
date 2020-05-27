@@ -1,4 +1,42 @@
 <script>
+  document.getElementById("table-body").addEventListener("click", function(e) {
+        //start by checking the class of the classDelete
+       
+
+        if (e.target.classList.contains("classDelete")) {
+            //if they click save we will save the data in an empty object
+            //create empty object recordInfo
+            var recordInfo = {};
+            //add an ID to the empty recordInfo Object. this is = to the recordID in the dataSet,of the target that was clicked on. 
+            //the recrodID is et below when the table is populated
+            recordInfo.id = e.target.dataset.recordId;
+            //add checkInState to the recordInfo Object. this is = to the previous element sibling which is the check box
+            recordInfo.checkInState = e.target.previousElementSibling.checked;
+            //log for testing to see the contents of checkinState
+            console.log(recordInfo.checkInState);
+            //show the loading div 
+            document.getElementById("loading").classList.remove("d-none");
+            //the below googe script function calls a function in your GS page. on success it will call the function in the call back.
+            google.script.run.withSuccessHandler(function(newDate) {
+                //the below console.log of newDate has the Guest list name as the first key pair value. that is wrong
+                console.log(newDate);
+                e.target.nextElementSibling.dataset.initialState = newDate[1] == "TRUE" ? true : false;
+                console.log(e.target.nextElementSibling.dataset.initialState);
+                var timeStampColumn = e.target.closest(".checkBoxButtons").previousElementSibling;
+                console.log(timeStampColumn);
+                //on 5/19/20 I changed this from newDate[0], to newDate[1]. 
+                //this cant be right, the newDate array has the guest list name in it which is wrong
+                //10 MIN LATER I CHANGED IT BACK- this error was from a line in the funcs.GS
+                timeStampColumn.textContent = newDate[0];
+                e.target.classList.add("d-none");
+                e.target.nextElementSibling.classList.add("d-none");
+                document.getElementById("loading").classList.add("d-none");
+            }).updateRecordById(recordInfo);
+        } //if we click save
+    }); //all event handlers inside the table
+
+
+
   
   document.addEventListener('DOMContentLoaded', function() {
       //The google script ill call get table data passing data. on success it will call the generateTable passing the data from data array.
@@ -21,12 +59,16 @@
 }
    
     document.getElementById("btn").addEventListener("click",addGuest); 
+    
     function addGuest(){
     var userInfo = {};
     
     userInfo.fname = document.getElementById("firstName").value;
     userInfo.lname = document.getElementById("lastNname").value;
     userInfo.ctype = document.getElementById("credType").value;
+    userInfo.eventID =  google.script.url.getLocation(function(location) {
+            console.log(location.parameters.event[0]);
+            });
 
     
     google.script.run.userClickAddGuest(userInfo);
@@ -41,7 +83,7 @@
     //re-initialize the element after clearing the selected type
    // M.FormSelect.init(credTypeSelect);
     
-    google.script.run.withSuccessHandler(generateBBTable).getBBTableData();
+    google.script.run.withSuccessHandler(generateEditTable).getEditList(location.parameters.event[0]);
     //refreshTable();
     
     }
@@ -65,7 +107,7 @@
             var col5 = document.createElement("td");
             col5.textContent = r[4];
             var col6 = document.createElement("td");
-            col6.classList.add("deleteButton");
+            col6.classList.add("classDelete");
             var deleteButton = document.createElement("button");
             deleteButton.type = "button";
             deleteButton.classList.add("ml-2");
