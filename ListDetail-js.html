@@ -50,8 +50,7 @@
             document.getElementById("loading").classList.remove("d-none");
             //the below googe script function calls a function in your GS page. on success it will call the function in the call back.
             google.script.run.withSuccessHandler(function(newDate) {
-                //the below console.log of newDate has the Guest list name as the first key pair value. that is wrong
-                console.log(newDate);
+                 console.log(newDate);
                 e.target.nextElementSibling.dataset.initialState = newDate[1] == "TRUE" ? true : false;
                 console.log(e.target.nextElementSibling.dataset.initialState);
                 var timeStampColumn = e.target.closest(".checkBoxButtons").previousElementSibling;
@@ -84,8 +83,8 @@ function generateTableTitle(title) {
         dataArray.forEach(function(r) {
 
             var row = document.createElement("tr");
-            var col1 = document.createElement("td");
-            col1.textContent = r[0];
+            //var col1 = document.createElement("td");
+            //col1.textContent = r[0];
             var col2 = document.createElement("td");
             col2.textContent = r[1];
             var col3 = document.createElement("td");
@@ -141,7 +140,7 @@ function generateTableTitle(title) {
             col7.appendChild(cancelButton);
             //col6.appendChild(saveButton);
             //col6.appendChild(cancelButton);
-            row.appendChild(col1);
+            //row.appendChild(col1);
             row.appendChild(col2);
             row.appendChild(col3);
             row.appendChild(col4);

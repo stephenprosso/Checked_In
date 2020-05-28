@@ -136,7 +136,20 @@ function getEditList(ev) {
      Logger.log("data : " + data);
      return data;
 }
+//** EditList-js Functions **//
+function deleteRecordById(recordInfo){
 
+ var spreadSheet = SpreadsheetApp.openByUrl(url);
+ var workSheet = spreadSheet.getSheetByName("Copy of Data");
+ var ids = workSheet.getRange(2, 1,workSheet.getLastRow()-1,1).getValues().map(function(r){return r[0]});
+ var positionInArray =  ids.indexOf(parseInt(recordInfo.id));
+ var rowNumber = positionInArray === -1 ? 0 : positionInArray +2;
+  
+ workSheet.getRange(rowNumber,1,1,8).setValues([recordInfo.id, recordInfo.fname, recordInfo.lname, recordInfo.ctype, recordInfo.org, recordInfo.checkinDate, recordInfo.checkBox, recordInfo.eventID]);
+ //OLD LINE//return workSheet.getRange(rowNumber,5,1,2).getDisplayValues()[0];
+  
+}
+//** EditList-js Functions **//
 function userClickAddGuest(userInfo){
 
   var spreadSheet = SpreadsheetApp.openByUrl(url);
@@ -175,15 +188,6 @@ function formatMySpreadsheet(id) {
                                                 
 }
 
-
-function getBBTableData() {
-
-     var ss = SpreadsheetApp.openByUrl(url);
-     var ws = ss.getSheetByName("BangBang");
-     var data = ws.getRange(2,1, ws.getLastRow() -1, 4).getValues();
-     Logger.log(data);
-     return data;
-}
 
 function loadHome() {
   var spreadSheet = SpreadsheetApp.openByUrl(url);

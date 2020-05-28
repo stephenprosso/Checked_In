@@ -10,31 +10,27 @@
             //add an ID to the empty recordInfo Object. this is = to the recordID in the dataSet,of the target that was clicked on. 
             //the recrodID is et below when the table is populated
             recordInfo.id = e.target.dataset.recordId;
-            //add checkInState to the recordInfo Object. this is = to the previous element sibling which is the check box
-            recordInfo.checkInState = e.target.previousElementSibling.checked;
-            //log for testing to see the contents of checkinState
-            console.log(recordInfo.checkInState);
+            recordInfo.fname = document.getElementById("firstName").value;
+            recordInfo.lname = document.getElementById("lastNname").value;
+            recordInfo.ctype = document.getElementById("credType").value;
+            recordInfo.eventID  = document.getElementById("eventList").value;
+            recordInfo.org  = document.getElementById("organization").value;
             //show the loading div 
             document.getElementById("loading").classList.remove("d-none");
             //the below googe script function calls a function in your GS page. on success it will call the function in the call back.
-            google.script.run.withSuccessHandler(function(newDate) {
-                //the below console.log of newDate has the Guest list name as the first key pair value. that is wrong
-                console.log(newDate);
-                e.target.nextElementSibling.dataset.initialState = newDate[1] == "TRUE" ? true : false;
-                console.log(e.target.nextElementSibling.dataset.initialState);
-                var timeStampColumn = e.target.closest(".checkBoxButtons").previousElementSibling;
-                console.log(timeStampColumn);
-                //on 5/19/20 I changed this from newDate[0], to newDate[1]. 
-                //this cant be right, the newDate array has the guest list name in it which is wrong
-                //10 MIN LATER I CHANGED IT BACK- this error was from a line in the funcs.GS
-                timeStampColumn.textContent = newDate[0];
-                e.target.classList.add("d-none");
-                e.target.nextElementSibling.classList.add("d-none");
-                document.getElementById("loading").classList.add("d-none");
-            }).updateRecordById(recordInfo);
+            google.script.run.withSuccessHandler(updateGrid).deleteRecordById(recordInfo);
+            
+            
+            
         } //if we click save
     }); //all event handlers inside the table
-
+    
+function updateGrid() {
+               console.log();
+               e.target.classList.add("d-none");
+               e.target.nextElementSibling.classList.add("d-none");
+               document.getElementById("loading").classList.add("d-none");
+            }
 
 
   
@@ -67,7 +63,7 @@
     userInfo.lname = document.getElementById("lastNname").value;
     userInfo.ctype = document.getElementById("credType").value;
     userInfo.eventID =  google.script.url.getLocation(function(location) {
-            console.log(location.parameters.event[0]);
+            location.parameters.event[0];
             });
 
     
