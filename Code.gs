@@ -12,6 +12,7 @@ function doGet(e) {
   Route.path("listDetail",loadListDetail);
   Route.path("editList",loadEditList);
   Route.path("addEvent", loadAddEvent);
+  Route.path("cardView", loadCardView);
   var params = Object.keys(e.parameters).filter(function(p){return p != "v"});
   
   var viewParameters = {};
@@ -57,6 +58,13 @@ function loadAddGuest() {
 function loadListDetail(params) {  
   console.log(params);
   return render("ListDetail");
+  
+  
+}
+
+function loadCardView() {  
+  
+  return render("DashCardView");
   
   
 }

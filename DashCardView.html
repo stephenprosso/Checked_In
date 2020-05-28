@@ -29,8 +29,8 @@
                      </li>
                      <li class="nav-item">
                        <a class="nav-link" href="<?= ScriptApp.getService().getUrl(); ?>?v=addGuest">Add Guest</a>  
-                     </li>
-                    <!-- **DO NOT DELETE THIS COMMENTED CODE** -->
+                     </li> 
+                      <!-- **DO NOT DELETE THIS COMMENTED CODE** -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Event Views</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -50,34 +50,23 @@
                 <h1>Upcoming Events</h1>
                  </div>
             <div class="col-sm-12" align="left">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>EventID</th>
-                            <th>Venue</th>
-                            <th>Headline / Event Name</th>
-                            <th>Date Of Event</th>
-                            <th>View List</th> 
-                        </tr>
-                    </thead>
-                    <tbody id="table-body">
-
-
-                    </tbody>
-                </table>
+               
             </div>
         </div>
         <!-- CLOSE ROW -->       
     </div>
     <!-- CLOSE CONTAINER -->
-   
+    <div class="container">
+      <div id="card-holder">             
+      </div>   
+    </div>
 
     <!-- SCRIPT FOR JQUERY -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- SCRIPTS FOR BOOTSTRAP -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <?!= include("Dashboard-js"); ?>
+    <?!= include("DashCardView-js"); ?>
 </body>
 
 </html>

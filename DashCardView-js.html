@@ -1,0 +1,53 @@
+<script>
+  
+  document.addEventListener('DOMContentLoaded', function() {
+      //The google script ill call get table data passing data. on success it will call the generateTable passing the data from data array.
+    google.script.run.withSuccessHandler(generateEventCard).getEventTableData();
+   
+    }); 
+      
+
+ function generateEventCard(dataArray) {
+ console.log(dataArray);
+
+      //var cbody = document.getElementById("card-holder");
+       
+         dataArray.forEach(function(r) {
+              var cardiv = document.createElement("div");
+              cardiv.classList.add("card");
+    
+              var card = document.createElement("div");
+              card.classList.add("card-body");
+              
+              var eventID = document.createElement("p");
+              eventID.textContent = r[0];
+              var venue = document.createElement("H3");
+              venue.textContent = r[1];
+              var eventName=  document.createElement("H4");
+              eventName.textContent = r[2];
+              var date = document.createElement("p");
+              date.textContent = r[3];
+              var button= document.createElement("button");
+              button.text = "View List";
+              button.classList.add("classViewList");
+              button.classList.add("btn-dark");
+              button.dataset.recordId = r[0];
+              //button.setAttribute('href', "https://script.google.com/a/mylifeeveryday.com/macros/s/AKfycbxZSBXq4P1RTQNCujQhV-qmKTllqJZ_9zTUe5uOgPy6/dev?v=listDetail&event=" + r[0]);
+              button.innerText = "View List";
+              button.setAttribute("type", "button");
+              //console.log(button.href);
+              card.appendChild(eventID);
+              card.appendChild(venue);
+              card.appendChild(eventName);
+              card.appendChild(date);
+              card.appendChild(button);
+              cardiv.appendChild(card);
+              
+              console.log(cardiv);
+              document.getElementById("card-holder").appendChild(cardiv);
+    });
+    // need to call Google script to refresh grid 
+   //google.script.run.withSuccessHandler(generateEventTable).getEventTableData();
+ } 
+    
+</script>
