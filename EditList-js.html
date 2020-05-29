@@ -10,13 +10,16 @@
             //add an ID to the empty recordInfo Object. this is = to the recordID in the dataSet,of the target that was clicked on. 
             //the recrodID is et below when the table is populated
             recordInfo.id = e.target.dataset.recordId;
-            recordInfo.fname = document.getElementById("firstName").value;
-            recordInfo.lname = document.getElementById("lastNname").value;
-            recordInfo.ctype = document.getElementById("credType").value;
-            recordInfo.eventID  = document.getElementById("eventList").value;
-            recordInfo.org  = document.getElementById("organization").value;
+            recordInfo.fname = "";
+            recordInfo.lname = "";
+            recordInfo.ctype = "";
+            recordInfo.org  = "";
+            recordInfo.checkinDate = "";
+            recordInfo.checkBox = false;
+            recordInfo.eventID  = "";
+            
             //show the loading div 
-            document.getElementById("loading").classList.remove("d-none");
+            //document.getElementById("loading").classList.remove("d-none");
             //the below googe script function calls a function in your GS page. on success it will call the function in the call back.
             google.script.run.withSuccessHandler(updateGrid).deleteRecordById(recordInfo);
             
@@ -103,8 +106,9 @@ function updateGrid() {
             var col5 = document.createElement("td");
             col5.textContent = r[4];
             var col6 = document.createElement("td");
-            col6.classList.add("classDelete");
+            
             var deleteButton = document.createElement("button");
+            deleteButton.classList.add("classDelete");
             deleteButton.type = "button";
             deleteButton.classList.add("ml-2");
             deleteButton.classList.add("btn-dark");

@@ -138,7 +138,7 @@ function getEditList(ev) {
 }
 //** EditList-js Functions **//
 function deleteRecordById(recordInfo){
-
+Logger.log(recordInfo);
  var spreadSheet = SpreadsheetApp.openByUrl(url);
  var workSheet = spreadSheet.getSheetByName("Copy of Data");
  var ids = workSheet.getRange(2, 1,workSheet.getLastRow()-1,1).getValues().map(function(r){return r[0]});
@@ -146,8 +146,7 @@ function deleteRecordById(recordInfo){
  var rowNumber = positionInArray === -1 ? 0 : positionInArray +2;
   
  workSheet.getRange(rowNumber,1,1,8).setValues([recordInfo.id, recordInfo.fname, recordInfo.lname, recordInfo.ctype, recordInfo.org, recordInfo.checkinDate, recordInfo.checkBox, recordInfo.eventID]);
- //OLD LINE//return workSheet.getRange(rowNumber,5,1,2).getDisplayValues()[0];
-  
+
 }
 //** EditList-js Functions **//
 function userClickAddGuest(userInfo){
