@@ -82,8 +82,8 @@ function getTableTitle(ev) {
   var ws = ss.getSheetByName("Event");
   var data = ws.getRange(2,1, ws.getLastRow() - 1,4).getValues();  
   //var gridTitleArray = data.filter(function(r){return r[0] == ev;}).map(function(r){return r[2] + " @ " + r[1] + " - " + r[3]});
-  var gridTitleArray = data.filter(function(r){return r[0] == ev;}).map(function(r){return r[2] + " @ " + r[1] + " - " + r[3]});
-  
+    var gridTitleArray = data.filter(function(r){return r[0] == ev;}).map(function(r){return r[2] + " @ " + r[1] + " - " + r[3]});
+
   Logger.log(gridTitleArray);
   return gridTitleArray;
    
@@ -158,7 +158,9 @@ function userClickAddGuest(userInfo){
   //find the max id from this list
   var maxID = Math.max.apply(null,ids);
   var newID = maxID+1;
-//this needs to be changed to send the event id as a parameter received from userInfo
+  //When the user clicks add guest they are adding the guest to a specific guests list.
+  //this needs to be changed to send the event id as a parameter received from userInfo
+
   workSheet.appendRow([newID, userInfo.fname, userInfo.lname, userInfo.ctype, userInfo.org, userInfo.checkinDate, userInfo.checkBox, userInfo.eventID]);
 
   
