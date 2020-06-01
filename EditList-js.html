@@ -10,18 +10,16 @@
             //add an ID to the empty recordInfo Object. this is = to the recordID in the dataSet,of the target that was clicked on. 
             //the recrodID is et below when the table is populated
             recordInfo.id = e.target.dataset.recordId;
-            recordInfo.fname = "";
-            recordInfo.lname = "";
-            recordInfo.ctype = "";
-            recordInfo.org  = "";
-            recordInfo.checkinDate = "";
-            recordInfo.checkBox = false;
-            recordInfo.eventID  = "";
-            
+         
             //show the loading div 
             //document.getElementById("loading").classList.remove("d-none");
             //the below googe script function calls a function in your GS page. on success it will call the function in the call back.
-            google.script.run.withSuccessHandler(updateGrid).deleteRecordById(recordInfo);
+            document.getElementById("loading").classList.remove("d-none");
+            google.script.run.withSuccessHandler(function() {
+                e.target.closest(".classRow").remove();
+                document.getElementById("loading").classList.add("d-none");
+
+            }).deleteRecordById(recordInfo);
             
             
             
@@ -95,6 +93,7 @@ function updateGrid() {
         dataArray.forEach(function(r) {
 
             var row = document.createElement("tr");
+            row.classList.add("classRow");
             var col1 = document.createElement("td");
             col1.textContent = r[0];
             var col2 = document.createElement("td");

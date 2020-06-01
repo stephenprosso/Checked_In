@@ -82,7 +82,20 @@ function getTableTitle(ev) {
   var ws = ss.getSheetByName("Event");
   var data = ws.getRange(2,1, ws.getLastRow() - 1,4).getValues();  
   //var gridTitleArray = data.filter(function(r){return r[0] == ev;}).map(function(r){return r[2] + " @ " + r[1] + " - " + r[3]});
-    var gridTitleArray = data.filter(function(r){return r[0] == ev;}).map(function(r){return r[2] + " @ " + r[1] + " - " + r[3]});
+  
+  
+  
+  //May 1, 2020 12:00:00 AM PDT
+  //[May,1, 2020, 12:00:00,AM,PDT]
+  
+  var gridTitleArray = data.filter(function(r){return r[0] == ev;}).map(function(r){
+    
+        var dateText = r[3].toLocaleString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        var displayDateArray = dateText.split(' ');
+        var displayDate = displayDateArray[0] + ' ' + displayDateArray[1] + ' ' + displayDateArray[2];
+        
+    
+    return r[2] + " @ " + r[1] + " - " + displayDate});
 
   Logger.log(gridTitleArray);
   return gridTitleArray;
@@ -142,11 +155,11 @@ Logger.log(recordInfo);
  var spreadSheet = SpreadsheetApp.openByUrl(url);
  var workSheet = spreadSheet.getSheetByName("Copy of Data");
  var ids = workSheet.getRange(2, 1,workSheet.getLastRow()-1,1).getValues().map(function(r){return r[0]});
+ 
  var positionInArray =  ids.indexOf(parseInt(recordInfo.id));
  var rowNumber = positionInArray === -1 ? 0 : positionInArray +2;
   
- workSheet.getRange(rowNumber,1,1,8).setValues([recordInfo.id, recordInfo.fname, recordInfo.lname, recordInfo.ctype, recordInfo.org, recordInfo.checkinDate, recordInfo.checkBox, recordInfo.eventID]);
-
+  workSheet.deleteRow(rowNumber);
 }
 //** EditList-js Functions **//
 function userClickAddGuest(userInfo){

@@ -50,16 +50,25 @@
                 <div class="col-sm-4">
                     <label for="firstName">First Name</label>
                     <input id="firstName" type="text" class="form-control validate" required>
+                    <div class="invalid-feedback">
+                       First Name required!!
+                      </div>
 
                 </div>
                 <div class="col-sm-4">
                     <label for="lastNname">Last Name</label>
                     <input id="lastNname" type="text" class="form-control validate" required>
+                    <div class="invalid-feedback">
+                       Last Name required!!
+                      </div>
 
                 </div>
                <div class="col-sm-4">
                    <label for="organization">Organization</label>
-                   <input id="organization" type="text" class="form-control validate" required>
+                   <input id="organization" type="text" class="form-control validate">
+                   <div class="invalid-feedback">
+                       Organization is required!!
+                      </div>
 
               </div>
           </div>
@@ -72,13 +81,15 @@
                 <option disabled selected>-Select Cred Type-</option>
                   <?!= list; ?>
                  </select>
+                 <div class="invalid-feedback">Select Cred Type</div>
                 </div>
                  <div class="col-sm-4">
                     <label>Select Event</label>
                     <select id="eventList" class="form-control" required>
-                <option selected disabled>-Event-</option>
-                 <?!= glist; ?>
-                 </select>
+                     <option selected disabled>-Event-</option>
+                      <?!= glist; ?>
+                    </select>
+                   <div class="invalid-feedback">Select event</div>
                 </div>
                 <div class="col-sm-4">
                    <label for="addGuest">Additional Guests</label>
@@ -99,32 +110,8 @@
     </div>
     <!-- CLOSE CONTAINER -->
  <!--ABCDEFGHIJKLMNOPQRSTUVWXYZ-0123456789-ABCDEFGHIJKLMNOPQRSTUVWXYZ-0123456789-ABCDEFGHIJKLMNOPQRSTUVWXYZ-0123456789-ABCDEFGHIJKLMNOPQRSTUVWXYZ-0123456789- -->  
-    
-  
-  <div role="alert" aria-live="assertive" aria-atomic="true" class="toast">
-  <div class="toast-header">
-    <img src="..." class="rounded mr-2" alt="...">
-    <strong class="mr-auto">Bootstrap</strong>
-    <small>11 mins ago</small>
-    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="toast-body">
-    First Name is required
-  </div>
-</div>
-  
- <!--ABCDEFGHIJKLMNOPQRSTUVWXYZ-0123456789-ABCDEFGHIJKLMNOPQRSTUVWXYZ-0123456789-ABCDEFGHIJKLMNOPQRSTUVWXYZ-0123456789-ABCDEFGHIJKLMNOPQRSTUVWXYZ-0123456789- --> 
-  
-    <!-- SCRIPT FOR JQUERY -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- SCRIPTS FOR BOOTSTRAP -->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <?!= include("AddGuest-js"); ?>
-</body>
-<footer>
+
+  <footer>
     <div class="container">
         <div class="row d-flex justify-content-center" align="center">
          <div class="col-sm-6">
@@ -138,5 +125,15 @@
        </div>  
     </div>
 </footer>
+ <!--ABCDEFGHIJKLMNOPQRSTUVWXYZ-0123456789-ABCDEFGHIJKLMNOPQRSTUVWXYZ-0123456789-ABCDEFGHIJKLMNOPQRSTUVWXYZ-0123456789-ABCDEFGHIJKLMNOPQRSTUVWXYZ-0123456789- --> 
+  
+    <!-- SCRIPT FOR JQUERY -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- SCRIPTS FOR BOOTSTRAP -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <?!= include("AddGuest-js"); ?>
+</body>
+
 
 </html>

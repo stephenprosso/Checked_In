@@ -4,7 +4,7 @@
     
       //add event listner to the btn. when user clicks it will call the function add name
       document.getElementById("btn").addEventListener("click",btnClickAction);
-      $('.toast').toast('show');
+      
       
       //var selectBoxes = document.querySelectorAll('select');
       //M.FormSelect.init(selectBoxes);  
@@ -32,15 +32,14 @@
     
   //  }
 
-    
+  
     function btnClickAction() {
        var toValidate = {
          firstName: "First Name Required",
          lastNname: "Last Name Required",
          credType: "Cred Type Required",
          eventList: "Select Event Required"
-        
-       
+     
        };
       
        var idKeys = Object.keys(toValidate);
@@ -55,23 +54,35 @@
  
        });
        
-       if(allValid) {
-       
-     addName();
+             if(allValid) {
+             
+           addName();
        }
     
-    }
-    
+    } //close function btnclick
+    //.is-invalid and .is-valid  
     function checkIfValid(elID, message) {
-      var isValid = document.getElementById(elID).checkValidity();
+      var elToValidate = document.getElementById(elID);
+      var isValid = false;
+      console.log("Styart validating");
+      console.log(elToValidate.tagName);
+      switch(elToValidate.tagName) {
+       
+              case "INPUT":
+                  isValid = elToValidate.checkValidity();
+                  isValid ? elToValidate.classList.remove("is-invalid") : elToValidate.classList.add("is-invalid");
+                break;
+              case "SELECT":
+                  isValid = elToValidate.selectedIndex === 0 ? false : true;
+                  isValid ? elToValidate.classList.remove("is-invalid") : elToValidate.classList.add("is-invalid");
+                break;
+              default:
+                // code block
+            }
+      
+     return isValid;
     
-    if(!isValid){
-      $('.toast').toast('show');
-       return false;
-      } 
-     return true;
-    
-    }
+    } // close function CheckIfValid
     function addName(){
     var userInfo = {};
     
