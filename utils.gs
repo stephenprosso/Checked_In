@@ -1,6 +1,10 @@
-function include(filename) {
+function include(filename,params) {
+  var paramsToUse = typeof params === 'undefined' ? {} : params;
 //file name is passed to the html service and we get the content of the file
-   return HtmlService.createHtmlOutputFromFile(filename).getContent();
+  var template = HtmlService.createTemplateFromFile(filename);
+  template.params = paramsToUse;
+  return template.evaluate().getContent();
+  
 
 }
 //THIS FUNCTION RENDERS THE CORRECT ROUTE AKA PAGE TP YOUR SCREEN

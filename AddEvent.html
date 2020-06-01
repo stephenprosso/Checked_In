@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!--Bootstrap link -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <?!= include("pageCSS"); ?>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.standalone.min.css" integrity="sha256-jO7D3fIsAq+jB8Xt3NI5vBf3k4tvtHwzp8ISLQG4UWU=" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <?!= include("pageCSS"); ?>
   </head>
   <body>
       <div class="container">
@@ -54,12 +56,31 @@
             <!-- CLOSE ROW -->
 
             <div class="row form-group">
-                <div class="col-sm-6">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2">@example.com</span>
+              </div>
+            </div>
+            
+            
+            <div class="col-sm-4">
+             <div class="input-group date">
+               <input id="newInput" type="text" class="form-control" value="12-02-2012">
+                <div class="input-group-append input-group-addon">
+                    <span class="input-group-text material-icons glyphicon glyphicon-th">face</span>
+                </div>
+               </div>
+              </div>
+            </div>
+                <div class="col-sm-4">
                    <label for="startDate">Start Date/ Time</label>
                    <input type="date" id="startDate" width="276">
+                   
+                   
 
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <button id="btn" type="button" class="align-bottom btn btn-dark">Create Event</button>
                 </div>
             </div>
@@ -82,6 +103,9 @@
     <!-- SCRIPTS FOR BOOTSTRAP -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+   
+   
     <?!= include("AddEvent-js"); ?>
   </body>
   <footer>

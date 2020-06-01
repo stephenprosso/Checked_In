@@ -123,7 +123,7 @@ function getEventTableData() {
   
   var ss = SpreadsheetApp.openByUrl(url);
   var ws = ss.getSheetByName("Event");
-  var data = ws.getRange(2,1,ws.getLastRow()-1,4).getDisplayValues();
+  var data = ws.getRange(2,1,ws.getLastRow()-1,5).getDisplayValues();
   Logger.log(data);
   return data;
 

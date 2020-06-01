@@ -14,10 +14,21 @@
       //var cbody = document.getElementById("card-holder");
        
          dataArray.forEach(function(r) {
+         
+         var cardHolder = document.createElement("div");
+         cardHolder.classList.add("col-sm-4");
+          
 
+          var cardLink = document.createElement("a");
+          cardLink.setAttribute('href', "<?= params.appurl.toString() ?>?v=listDetail&event=" + r[0]);
+          cardLink.classList.add("cardLinkClass");
           var card = document.createElement("div");
           card.classList.add("card");
           card.classList.add("cardStyle");
+          var image = document.createElement("img");
+          image.classList.add("card-img-top");
+          image.src = r[4];
+          
 
           var cardbody = document.createElement("div");
           cardbody.classList.add("card-body");
@@ -30,23 +41,26 @@
           eventName.textContent = r[2];
           var date = document.createElement("p");
           date.textContent = r[3];
-          var viewListAnchor = document.createElement("a");
+        /*  var viewListAnchor = document.createElement("a");
           viewListAnchor.text = "View List";
           viewListAnchor.classList.add("classViewList");
           viewListAnchor.classList.add("btn-dark");
           viewListAnchor.dataset.recordId = r[0];
-          viewListAnchor.setAttribute('href', "https://script.google.com/a/mylifeeveryday.com/macros/s/AKfycbxZSBXq4P1RTQNCujQhV-qmKTllqJZ_9zTUe5uOgPy6/dev?v=listDetail&event=" + r[0]);
+          //viewListAnchor.setAttribute('href', "https://script.google.com/a/mylifeeveryday.com/macros/s/AKfycbxZSBXq4P1RTQNCujQhV-qmKTllqJZ_9zTUe5uOgPy6/dev?v=listDetail&event=" + r[0]);
           viewListAnchor.innerText = "View List";
-          viewListAnchor.setAttribute("type", "button");
+          viewListAnchor.setAttribute("type", "button"); */
 
           cardbody.appendChild(eventName);
           cardbody.appendChild(venue);
           cardbody.appendChild(date);
-          cardbody.appendChild(viewListAnchor);
+         // cardbody.appendChild(viewListAnchor);
+          card.appendChild(image);
           card.appendChild(cardbody);
+          cardLink.appendChild(card);
           
           //console.log(card);
-          document.getElementById("card-group").appendChild(card);
+          cardHolder.appendChild(cardLink);
+          document.getElementById("card-group").appendChild(cardHolder);
 
     });
     // need to call Google script to refresh grid 
