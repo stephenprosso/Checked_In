@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html>
-<script>
-//1. add a dropdown of events populated from Event worksheet
-//2.
-</script>
 <head>
     <base target="_top">
     <meta charset="utf-8">
@@ -51,29 +47,22 @@
                     <label for="firstName">First Name</label>
                     <input id="firstName" type="text" class="form-control validate" required>
                     <div class="invalid-feedback">
-                       First Name required!!
+                       Enter First Name
                       </div>
-
                 </div>
                 <div class="col-sm-4">
                     <label for="lastNname">Last Name</label>
                     <input id="lastNname" type="text" class="form-control validate" required>
                     <div class="invalid-feedback">
-                       Last Name required!!
+                      Enter Last Name
                       </div>
-
                 </div>
                <div class="col-sm-4">
                    <label for="organization">Organization</label>
                    <input id="organization" type="text" class="form-control validate">
-                   <div class="invalid-feedback">
-                       Organization is required!!
-                      </div>
-
               </div>
           </div>
             <!-- CLOSE ROW -->
-
             <div class="row form-group">
                 <div class="col-sm-4">
                     <label>Credential Type</label>
@@ -101,6 +90,7 @@
             <!-- CLOSE ROW -->
             <div class="row form-group">
                 <div class="col-sm-6">
+                 <button id="btn" type="button" class="align-bottom btn btn-dark">Add Guest</button>
                 </div>
                 <div class="col-sm-6">
                 </div>
@@ -114,11 +104,8 @@
   <footer>
     <div class="container">
         <div class="row d-flex justify-content-center" align="center">
-         <div class="col-sm-6">
-          <button id="btn" type="button" class="align-bottom btn btn-dark">Add Guest</button>
-        
-             </div>
-         <div class="col-sm-6">
+
+         <div class="col-sm-12">
          <a href="<?= ScriptApp.getService().getUrl(); ?>" id="btn" type="button" class="btn btn-dark">Back to Main Menu</a>
       
           </div>

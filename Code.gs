@@ -30,7 +30,7 @@ function doGet(e) {
     }
   
   }else {
-   return render("Dashboard");
+   return render("DashCardView");
   }
 }
 

@@ -45,51 +45,38 @@
                 <div class="col-sm-6">
                     <label for="venueName">Venue</label>
                     <input id="venueName" type="text" class="form-control validate" required>
+                    <div class="invalid-feedback">
+                       Please enter venue name.
+                      </div>
 
                 </div>
                 <div class="col-sm-6">
                     <label for="eventName">Headline Act</label>
                     <input id="eventName" type="text" class="form-control validate" required>
+                    <div class="invalid-feedback">
+                       Please enter the name of event or headline act.
+                      </div>
 
                 </div>
             </div>
             <!-- CLOSE ROW -->
 
-            <div class="row form-group">
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <span class="input-group-text" id="basic-addon2">@example.com</span>
-              </div>
-            </div>
+ 
             
-            
-            <div class="col-sm-4">
-             <div class="input-group date">
-               <input id="newInput" type="text" class="form-control" value="12-02-2012">
+            <div class="row">
+             <div class="col-sm-6">
+              <div class="input-group date">
+               <input id="startDate" type="text" class="form-control" placeholder="Select Date" required>
                 <div class="input-group-append input-group-addon">
-                    <span class="input-group-text material-icons glyphicon glyphicon-th">face</span>
+                    <span class="input-group-text material-icons glyphicon glyphicon-th">schedule</span>
                 </div>
+                <div class="invalid-feedback">
+                       Please Select A Date
+                      </div>
                </div>
-              </div>
             </div>
-                <div class="col-sm-4">
-                   <label for="startDate">Start Date/ Time</label>
-                   <input type="date" id="startDate" width="276">
-                   
-                   
-
-                </div>
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                     <button id="btn" type="button" class="align-bottom btn btn-dark">Create Event</button>
-                </div>
-            </div>
-
-            <!-- CLOSE ROW -->
-            <div class="row form-group">
-                <div class="col-sm-6">
-                </div>
-                <div class="col-sm-6">
                 </div>
             </div>
             <!-- CLOSE ROW -->
@@ -108,13 +95,14 @@
    
     <?!= include("AddEvent-js"); ?>
   </body>
-  <footer>
+  
+<!--  <footer>
     <div class="container">
         <div class="d-flex justify-content-center" align="center">
             <a href="<?= ScriptApp.getService().getUrl(); ?>" id="btn" type="button" class="btn btn-dark">Back to Main Menu</a>
         </div>
     </div>
-</footer>
+</footer> -->
 </html>
 
 
