@@ -161,6 +161,8 @@ Logger.log(recordInfo);
   
   workSheet.deleteRow(rowNumber);
 }
+
+
 //** EditList-js Functions **//
 function userClickAddGuest(userInfo){
 
@@ -180,6 +182,41 @@ function userClickAddGuest(userInfo){
   //Logger.log(name + "Your CLick is My Command");
 
 }
+
+function deleteEventById(recordInfo){
+  //var recordInfo = {id: 5};
+  var id = parseInt(recordInfo.id); //converting text ids to number ids
+  var spreadSheet = SpreadsheetApp.openByUrl(url); //get spreadsheet
+  var wsData = spreadSheet.getSheetByName("Copy of Data"); //get worksheet for guests
+  var guestData = wsData.getRange(2,1,wsData.getLastRow()-1,8).getValues(); //get array of guests
+  var wsEvent = spreadSheet.getSheetByName("Event"); //get event data
+  //intially this is what it looks like
+  //[ 1,stephen,rosso,god pass,organization, eventID] 
+  //[ 1,stephen,rosso,god pass,organization, eventID] r.concat adds extra column for index to existing array
+  var matchingEvents = guestData.map(function(r,i){ 
+     return r.concat([i]);
+  }).filter(function(r){ //filter the results and keep the records where eventID matches event ID
+    return r[7] === id;  // the index is on the last column.
+  });
+  var matchingGuestRows = matchingEvents.map(function(r){ //only return the information needed- the index
+     return r[8]+2; // add 2 becasue we have 1 line of static information
+  }); //[1,5,9] 
+  for (var i = matchingGuestRows.length -1; i>=0; i--){ //loop through the aray from bottom to top to find the matching guest. start with -1 to get to the last element
+          wsData.deleteRow(matchingGuestRows[i]); //delete the row number which is i inside  matchingGuestRows
+       }
+  Logger.log(matchingGuestRows);
+  
+ var ids = wsEvent.getRange(2, 1,wsEvent.getLastRow()-1,1).getValues().map(function(r){return r[0]}); //get the id of the event
+ 
+ var positionInArray =  ids.indexOf(id); //get the index position 
+ var rowNumber = positionInArray === -1 ? 0 : positionInArray +2; //again add 2 to index to get the row number
+  
+ wsEvent.deleteRow(rowNumber); // delete the row number
+}
+
+//next step is to create a delete button that calls this function and passes the recordInfo.id.
+
+
 
 //**FUNCTIONS NOT IN USE GO BELOW THIS LINE**//
 //table-js.html functions
