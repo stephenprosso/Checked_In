@@ -38,7 +38,7 @@
     <div class="container">
         <div class="row" align="center">
             <div class="col-sm-12">
-                <h3><span class="align-bottom" id = "title" class="pt-2"></span></h3>   
+                <h3>Quick Add Guest</h3>   
             </div>
         </div>
       </div>  
@@ -48,25 +48,27 @@
                 <div class="col-sm-3">
                    <!--<label for="firstName">First Name</label>--> 
                     <input id="firstName" type="text" class="form-control validate" placeholder="First Name" required>
-                    
+                    <div class="invalid-feedback">Enter First Name</div>
                 </div>
                 <div class="col-sm-3">
                  <!--<label for="lastNname">Last Name</label>-->
-                    <input id="lastNname" type="text" class="form-control validate" placeholder="Last Name" required>                
+                    <input id="lastNname" type="text" class="form-control validate" placeholder="Last Name" required>   
+                    <div class="invalid-feedback">Enter Last Name</div>
                 </div>
                 <div class="col-sm-2">
                     <!--<label>Credential Type</label>-->
                     <select id="credType" class="form-control">
                     <option disabled selected>-Cred Type-</option>
                   <?!= list; ?>
-                 </select>                 
+                 </select>   
+                 <div class="invalid-feedback">Select a Cred Type</div>
                 </div>
                 <div class="col-sm-2">
                     <!--<label>Select Event</label>-->
                     <select id="eventList" class="form-control" required>
                      <option selected disabled>-Event-</option>
                       <?!= glist; ?>
-                    </select>
+                    </select> 
                    <div class="invalid-feedback">Select event</div>
                 </div><!--END col-sm-4-->
                 <div class="col-sm-2">
@@ -78,7 +80,7 @@
         </form>
         <div class="row">
             <div class="col-sm-12">
-                <h5>Your List</h5>
+                <h3><span class="align-bottom" id = "title" class="pt-2"></span></h3> 
                 <table class="table">
                     <thead>
                         <tr>

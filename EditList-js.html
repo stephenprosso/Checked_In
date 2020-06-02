@@ -47,9 +47,58 @@
 
 }
    
-    document.getElementById("btn").addEventListener("click",addGuest); 
+    document.getElementById("btn").addEventListener("click",btnClickAction); 
     
-    function addGuest(){
+       function btnClickAction() {
+      var toValidate = {
+        firstName: "First Name Required",
+        lastNname: "Last Name Required",
+        credType: "Cred Type Required",
+        eventList: "Select Event Required"     
+      };
+     
+      var idKeys = Object.keys(toValidate);
+      
+      var allValid = true;
+      idKeys.forEach(function(id){
+       var isValid =  checkIfValid(id, toValidate[id]);
+            if (!isValid) {
+            
+            allValid = false;
+            }
+      });
+      
+            if(allValid) {
+            
+          addGuest();
+      }
+   
+   } //close function btnclick
+   //.is-invalid and .is-valid  
+   
+      function checkIfValid(elID, message) {
+     var elToValidate = document.getElementById(elID);
+     var isValid = false;
+     console.log("Styart validating");
+     console.log(elToValidate.tagName);
+     switch(elToValidate.tagName) {
+      
+             case "INPUT":
+                 isValid = elToValidate.checkValidity();
+                 isValid ? elToValidate.classList.remove("is-invalid") : elToValidate.classList.add("is-invalid");
+               break;
+             case "SELECT":
+                 isValid = elToValidate.selectedIndex === 0 ? false : true;
+                 isValid ? elToValidate.classList.remove("is-invalid") : elToValidate.classList.add("is-invalid");
+               break;
+             default:
+               // code block
+           }
+     
+    return isValid;
+   
+   } // close function CheckIfValid
+   function addGuest(){
       
  
     var userInfo = {};
@@ -103,6 +152,7 @@
             deleteButton.classList.add("classDelete");
             deleteButton.type = "button";
             deleteButton.classList.add("ml-2");
+            deleteButton.classList.add("btn");
             deleteButton.classList.add("btn-dark");
             
             deleteButton.innerText="Delete";
