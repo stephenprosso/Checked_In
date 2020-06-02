@@ -15,7 +15,7 @@
     <div class="container">
        <!-- Start Nav Bar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="<?= ScriptApp.getService().getUrl(); ?>">Checked_In</a>
+            <a class="navbar-brand" href="<?= ScriptApp.getService().getUrl(); ?>">Checkden</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
          <span class="navbar-toggler-icon"></span>
        </button>
@@ -46,22 +46,31 @@
         <form>
             <div class="row form-group">
                 <div class="col-sm-3">
-                    <label for="firstName">First Name</label>
-                    <input id="firstName" type="text" class="form-control validate">
+                   <!--<label for="firstName">First Name</label>--> 
+                    <input id="firstName" type="text" class="form-control validate" placeholder="First Name" required>
                     
                 </div>
                 <div class="col-sm-3">
-                    <label for="lastNname">Last Name</label>
-                    <input id="lastNname" type="text" class="form-control validate">                
+                 <!--<label for="lastNname">Last Name</label>-->
+                    <input id="lastNname" type="text" class="form-control validate" placeholder="Last Name" required>                
                 </div>
-                <div class="col-sm-3">
-                    <label>Credential Type</label>
+                <div class="col-sm-2">
+                    <!--<label>Credential Type</label>-->
                     <select id="credType" class="form-control">
-                    <option disabled selected>-Select Cred Type-</option>
+                    <option disabled selected>-Cred Type-</option>
                   <?!= list; ?>
                  </select>                 
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-2">
+                    <!--<label>Select Event</label>-->
+                    <select id="eventList" class="form-control" required>
+                     <option selected disabled>-Event-</option>
+                      <?!= glist; ?>
+                    </select>
+                   <div class="invalid-feedback">Select event</div>
+                </div><!--END col-sm-4-->
+                <div class="col-sm-2">
+                <!--<label>Add Guest</label> -->
                     <button id="btn" type="button" class="btn btn-dark align-bottom">Add Guest</button>
                 </div>
             </div>

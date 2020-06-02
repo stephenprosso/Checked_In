@@ -14,7 +14,7 @@
     <div class="container">
       <!-- Start Nav Bar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="<?= ScriptApp.getService().getUrl(); ?>">Checked_In</a>
+            <a class="navbar-brand" href="<?= ScriptApp.getService().getUrl(); ?>">Checkden</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
          <span class="navbar-toggler-icon"></span>
        </button>
@@ -64,14 +64,14 @@
           </div>
             <!-- CLOSE ROW -->
             <div class="row form-group">
-                <div class="col-sm-4">
+                <div class="col-sm-4"> 
                     <label>Credential Type</label>
                     <select id="credType" class="form-control" required>
                 <option disabled selected>-Select Cred Type-</option>
                   <?!= list; ?>
                  </select>
                  <div class="invalid-feedback">Select Cred Type</div>
-                </div>
+                </div><!-- END col-sm-4   -->>
                  <div class="col-sm-4">
                     <label>Select Event</label>
                     <select id="eventList" class="form-control" required>
@@ -79,15 +79,13 @@
                       <?!= glist; ?>
                     </select>
                    <div class="invalid-feedback">Select event</div>
-                </div>
+                </div><!-- END col-sm-4   -->>
                 <div class="col-sm-4">
                    <label for="addGuest">Additional Guests</label>
                    <input id="addGuest" type="text" class="form-control validate" disabled>
 
-                </div>
-            </div>
-
-            <!-- CLOSE ROW -->
+                </div><!-- END col-sm-4   -->>
+            </div><!-- CLOSE ROW -->
             <div class="row form-group">
                 <div class="col-sm-6">
                  <button id="btn" type="button" class="align-bottom btn btn-dark">Add Guest</button>
