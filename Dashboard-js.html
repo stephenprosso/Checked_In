@@ -5,23 +5,39 @@
        
 
         if (e.target.classList.contains("classDeleteList")) {
-            //if they click save we will save the data in an empty object
-            //create empty object recordInfo
-            var recordInfo = {};
-            //add an ID to the empty recordInfo Object. this is = to the recordID in the dataSet,of the target that was clicked on. 
-            //the recrodID is et below when the table is populated
-            recordInfo.id = e.target.dataset.recordId;
-         
-            //show the loading div 
-            //document.getElementById("loading").classList.remove("d-none");
-            //the below googe script function calls a function in your GS page. on success it will call the function in the call back.
-            document.getElementById("loading").classList.remove("d-none");
-            google.script.run.withSuccessHandler(function() {
-               e.target.closest(".classRow").remove();
-               //make sure you add this in the HTML
-                document.getElementById("loading").classList.add("d-none");
+        
+        
+        
+  
+                  var confirmation = confirm("This will delete the event and all of the event guest data. Are you sure you want to delete everything?");
+                        if (confirmation === true) {
+                        
+                        //if they click save we will save the data in an empty object
+                        //create empty object recordInfo
+                        var recordInfo = {};
+                        //add an ID to the empty recordInfo Object. this is = to the recordID in the dataSet,of the target that was clicked on. 
+                        //the recrodID is et below when the table is populated
+                        recordInfo.id = e.target.dataset.recordId;
+                     
+                        //show the loading div 
+                        //document.getElementById("loading").classList.remove("d-none");
+                        //the below googe script function calls a function in your GS page. on success it will call the function in the call back.
+                        document.getElementById("loading").classList.remove("d-none");
+                        google.script.run.withSuccessHandler(function() {
+                           e.target.closest(".classRow").remove();
+                           //make sure you add this in the HTML
+                      document.getElementById("loading").classList.add("d-none");
 
             }).deleteEventById(recordInfo);
+            
+                        } else {
+                          return false;
+                        }
+                       
+        
+        
+        
+        
             
             
             
@@ -61,7 +77,8 @@ function generateEventTable(dataArray) {
               viewListAnchor.classList.add("btn-dark");
               viewListAnchor.classList.add("btn-sm");
               viewListAnchor.dataset.recordId = r[0];
-              viewListAnchor.setAttribute('href', "https://script.google.com/a/mylifeeveryday.com/macros/s/AKfycbxZSBXq4P1RTQNCujQhV-qmKTllqJZ_9zTUe5uOgPy6/dev?v=listDetail&event=" + r[0]);
+              //viewListAnchor.setAttribute('href', "https://script.google.com/a/mylifeeveryday.com/macros/s/AKfycbxZSBXq4P1RTQNCujQhV-qmKTllqJZ_9zTUe5uOgPy6/dev?v=listDetail&event=" + r[0]);
+              viewListAnchor.setAttribute('href', "<?= params.appurl.toString() ?>?v=listDetail&event=" + r[0]);
               viewListAnchor.innerText = "View List";
               viewListAnchor.setAttribute("type", "button");
               var editListAnchor = document.createElement("a");
@@ -70,27 +87,28 @@ function generateEventTable(dataArray) {
               editListAnchor.classList.add("btn-primary");
               editListAnchor.classList.add("btn-sm");
               editListAnchor.dataset.recordId = r[0];
-              editListAnchor.setAttribute('href', "https://script.google.com/a/mylifeeveryday.com/macros/s/AKfycbxZSBXq4P1RTQNCujQhV-qmKTllqJZ_9zTUe5uOgPy6/dev?v=editList&event=" + r[0]);
+              //editListAnchor.setAttribute('href', "https://script.google.com/a/mylifeeveryday.com/macros/s/AKfycbxZSBXq4P1RTQNCujQhV-qmKTllqJZ_9zTUe5uOgPy6/dev?v=editList&event=" + r[0]);
+              editListAnchor.setAttribute('href', "<?= params.appurl.toString() ?>?v=editList&event=" + r[0]);
+             
               editListAnchor.innerText = "Edit List";
               editListAnchor.setAttribute("type", "button");
               
-              var deleteListAnchor = document.createElement("a");
-              //deleteListAnchor.text = "Delete";
-              deleteListAnchor.classList.add("classDeleteList");
-              deleteListAnchor.classList.add("ml-2");
-              deleteListAnchor.classList.add("btn");
-              deleteListAnchor.classList.add("btn-danger");
-              deleteListAnchor.classList.add("btn-sm");
-              deleteListAnchor.dataset.recordId = r[0];
-              deleteListAnchor.innerText = "Delete";
-              deleteListAnchor.setAttribute("type", "button");
+              var deleteListButton = document.createElement("Button");
+              deleteListButton.classList.add("classDeleteList");
+              deleteListButton.classList.add("ml-2");
+              deleteListButton.classList.add("btn");
+              deleteListButton.classList.add("btn-danger");
+              deleteListButton.classList.add("btn-sm");
+              deleteListButton.dataset.recordId = r[0];
+              deleteListButton.innerText = "Delete";
+              deleteListButton.setAttribute("type", "button");
               
               
              
               console.log(viewListAnchor.href);
               col5.appendChild(viewListAnchor);
               col5.appendChild(editListAnchor); 
-              col5.appendChild(deleteListAnchor);
+              col5.appendChild(deleteListButton);
               //row.appendChild(col1);
               row.appendChild(col2);
               row.appendChild(col3);
