@@ -113,7 +113,7 @@ function userClickAddEvent(userInfo){
   var maxID = Math.max.apply(null,ids);
   var newID = maxID+1;
 
-  workSheet.appendRow([newID,userInfo.vname,userInfo.ename,userInfo.sdate]);
+  workSheet.appendRow([newID,userInfo.vname,userInfo.ename,userInfo.sdate,userInfo.eimage]);
   
 
 }

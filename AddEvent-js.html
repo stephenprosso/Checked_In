@@ -61,30 +61,17 @@
     userInfo.vname = document.getElementById("venueName").value;
     userInfo.ename = document.getElementById("eventName").value;
     userInfo.sdate = document.getElementById("startDate").value;    
+    userInfo.eimage = document.getElementById("eventImage").value; 
     //run the user click pass the array of data.
     google.script.run.userClickAddEvent(userInfo);
     //clear the fields
     document.getElementById("venueName").value = "";
     document.getElementById("eventName").value = "";
+    document.getElementById("eventImage").value = "";
     $('#startDate').datepicker('setDate', null);    
     }
     
-    function  getEstimate() {
-    
-      var zipCode = document.getElementById("zip").value;
-      
-      if(zipCode.length === 5){
-      
-        google.script.run.withSuccessHandler(updateEstimate).getCost(zipCode);
-        
-      }
-    }
-    
-  //  function updateEstimate(cost) {
-  //          document.getElementById("est").value = cost;
-  //          M.updateTextFields();
-  //  
- //   }
+   
     </script>
 
 

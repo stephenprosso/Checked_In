@@ -106,6 +106,7 @@
     userInfo.fname = document.getElementById("firstName").value;
     userInfo.lname = document.getElementById("lastNname").value;
     userInfo.ctype = document.getElementById("credType").value;
+    userInfo.org = document.getElementById("organization").value;
    
     userInfo.eventID = document.getElementById("eventList").value;
     google.script.run.userClickAddGuest(userInfo);
@@ -136,8 +137,8 @@
 
             var row = document.createElement("tr");
             row.classList.add("classRow");
-            var col1 = document.createElement("td");
-            col1.textContent = r[0];
+            //var col1 = document.createElement("td");
+            //col1.textContent = r[0];
             var col2 = document.createElement("td");
             col2.textContent = r[1];
             var col3 = document.createElement("td");
@@ -158,7 +159,7 @@
             deleteButton.innerText="Delete";
             deleteButton.dataset.recordId = r[0];           
             col6.appendChild(deleteButton);
-            row.appendChild(col1);
+            //row.appendChild(col1);
             row.appendChild(col2);
             row.appendChild(col3);
             row.appendChild(col4);
