@@ -36,7 +36,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="<?= ScriptApp.getService().getUrl(); ?>?v=cardView">Card View</a>
                              <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="<?= ScriptApp.getService().getUrl(); ?>">Grid View</a>
+                            <a class="dropdown-item" href="<?= ScriptApp.getService().getUrl(); ?>?v=Dashboard">Grid View</a>
                         </div>
                     </li>
                 </ul>
@@ -57,7 +57,7 @@
                             <th>Venue</th>
                             <th>Headline / Event Name</th>
                             <th>Date Of Event</th>
-                            <th>View List</th> 
+                            <th>Options</th> 
                         </tr>
                     </thead>
                     <tbody id="table-body">
@@ -70,6 +70,15 @@
         <!-- CLOSE ROW -->       
     </div>
     <!-- CLOSE CONTAINER -->
+     <!-- start Loading Spinner -->
+        <div id="loading" class="d-none">
+         <div class="d-flex justify-content-center">
+           <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+          </div>
+          </div>
+        </div>
+    <!-- END Loading Spinner -->
    
 
     <!-- SCRIPT FOR JQUERY -->

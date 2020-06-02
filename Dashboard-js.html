@@ -1,4 +1,33 @@
 <script>
+
+ document.getElementById("table-body").addEventListener("click", function(e) {
+        //start by checking the class of the classDelete
+       
+
+        if (e.target.classList.contains("classDeleteList")) {
+            //if they click save we will save the data in an empty object
+            //create empty object recordInfo
+            var recordInfo = {};
+            //add an ID to the empty recordInfo Object. this is = to the recordID in the dataSet,of the target that was clicked on. 
+            //the recrodID is et below when the table is populated
+            recordInfo.id = e.target.dataset.recordId;
+         
+            //show the loading div 
+            //document.getElementById("loading").classList.remove("d-none");
+            //the below googe script function calls a function in your GS page. on success it will call the function in the call back.
+            document.getElementById("loading").classList.remove("d-none");
+            google.script.run.withSuccessHandler(function() {
+               e.target.closest(".classRow").remove();
+               //make sure you add this in the HTML
+                document.getElementById("loading").classList.add("d-none");
+
+            }).deleteEventById(recordInfo);
+            
+            
+            
+        } 
+    }); //all event handlers inside the table
+  
   
   document.addEventListener('DOMContentLoaded', function() {
       //var selectBoxes = document.querySelectorAll('select');
@@ -18,6 +47,7 @@ function generateEventTable(dataArray) {
          dataArray.forEach(function(r) {
     
               var row = document.createElement("tr");
+              row.classList.add("classRow");
               //var col1= document.createElement("td");
               //col1.textContent = r[0];
               var col2= document.createElement("td");
@@ -27,17 +57,40 @@ function generateEventTable(dataArray) {
               var col4= document.createElement("td");
               col4.textContent = r[3];
               var col5= document.createElement("td");
-              var viewListAnchor = document.createElement("a");
-              viewListAnchor.text = "View List";
-              viewListAnchor.classList.add("classViewList");
-              viewListAnchor.classList.add("btn");
+              var viewListAnchor = document.createElement("a");              
               viewListAnchor.classList.add("btn-dark");
+              viewListAnchor.classList.add("btn-sm");
               viewListAnchor.dataset.recordId = r[0];
               viewListAnchor.setAttribute('href', "https://script.google.com/a/mylifeeveryday.com/macros/s/AKfycbxZSBXq4P1RTQNCujQhV-qmKTllqJZ_9zTUe5uOgPy6/dev?v=listDetail&event=" + r[0]);
               viewListAnchor.innerText = "View List";
               viewListAnchor.setAttribute("type", "button");
+              var editListAnchor = document.createElement("a");
+              editListAnchor.classList.add("ml-2");
+              editListAnchor.classList.add("btn");
+              editListAnchor.classList.add("btn-primary");
+              editListAnchor.classList.add("btn-sm");
+              editListAnchor.dataset.recordId = r[0];
+              editListAnchor.setAttribute('href', "https://script.google.com/a/mylifeeveryday.com/macros/s/AKfycbxZSBXq4P1RTQNCujQhV-qmKTllqJZ_9zTUe5uOgPy6/dev?v=editList&event=" + r[0]);
+              editListAnchor.innerText = "Edit List";
+              editListAnchor.setAttribute("type", "button");
+              
+              var deleteListAnchor = document.createElement("a");
+              //deleteListAnchor.text = "Delete";
+              deleteListAnchor.classList.add("classDeleteList");
+              deleteListAnchor.classList.add("ml-2");
+              deleteListAnchor.classList.add("btn");
+              deleteListAnchor.classList.add("btn-danger");
+              deleteListAnchor.classList.add("btn-sm");
+              deleteListAnchor.dataset.recordId = r[0];
+              deleteListAnchor.innerText = "Delete";
+              deleteListAnchor.setAttribute("type", "button");
+              
+              
+             
               console.log(viewListAnchor.href);
-              col5.appendChild(viewListAnchor);  
+              col5.appendChild(viewListAnchor);
+              col5.appendChild(editListAnchor); 
+              col5.appendChild(deleteListAnchor);
               //row.appendChild(col1);
               row.appendChild(col2);
               row.appendChild(col3);

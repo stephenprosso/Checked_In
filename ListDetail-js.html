@@ -125,12 +125,18 @@ function generateTableTitle(title) {
             saveButton.classList.add("classSave");
             saveButton.classList.add("ml-2");
             saveButton.classList.add("d-none");
+            saveButton.classList.add("btn");
+            saveButton.classList.add("btn-dark");
+            saveButton.classList.add("btn-sm");
             saveButton.dataset.recordId = r[0];
             var cancelButton = document.createElement("button");
             cancelButton.textContent = "Cancel";
             cancelButton.classList.add("classCancel");
             cancelButton.classList.add("ml-2");
             cancelButton.classList.add("d-none");
+            cancelButton.classList.add("btn");
+            cancelButton.classList.add("btn-dark");
+            cancelButton.classList.add("btn-sm");
             //change initial state to come from r[6] the check box moved from colum 5 to column 6
             cancelButton.dataset.initialState = r[6] == "TRUE" ? true : false;
             ///old line/ cancelButton.dataset.initialState = r[5] == "TRUE" ? true : false;

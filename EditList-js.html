@@ -26,14 +26,6 @@
         } //if we click save
     }); //all event handlers inside the table
     
-function updateGrid() {
-               console.log();
-               e.target.classList.add("d-none");
-               e.target.nextElementSibling.classList.add("d-none");
-               document.getElementById("loading").classList.add("d-none");
-            }
-
-
   
   document.addEventListener('DOMContentLoaded', function() {
       //The google script ill call get table data passing data. on success it will call the generateTable passing the data from data array.
@@ -58,18 +50,21 @@ function updateGrid() {
     document.getElementById("btn").addEventListener("click",addGuest); 
     
     function addGuest(){
+    
+    google.script.url.getLocation(function(location) {
+    console.log(location.parameters.event[0]);
     var userInfo = {};
     
     userInfo.fname = document.getElementById("firstName").value;
     userInfo.lname = document.getElementById("lastNname").value;
     userInfo.ctype = document.getElementById("credType").value;
-    userInfo.eventID =  google.script.url.getLocation(function(location) {
-            location.parameters.event[0];
-            });
-
+     var eID = location.parameters.event[0];
+       console.log(eID);
+       userInfo.eventID = eID;
+      google.script.run.userClickAddGuest(userInfo);
     
-    google.script.run.userClickAddGuest(userInfo);
-    
+          });
+   
     document.getElementById("firstName").value = "";
     document.getElementById("lastNname").value = "";
    // M.updateTextFields();
