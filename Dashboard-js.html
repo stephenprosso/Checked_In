@@ -34,21 +34,14 @@
                           return false;
                         }
                        
-        
-        
-        
-        
-            
-            
+          
             
         } 
     }); //all event handlers inside the table
   
   
   document.addEventListener('DOMContentLoaded', function() {
-      //var selectBoxes = document.querySelectorAll('select');
-     // M.FormSelect.init(selectBoxes);  
-    //The google script ill call get table data passing data. on success it will call the generateTable passing the data from data array.
+      //The google script ill call get table data passing data. on success it will call the generateTable passing the data from data array.
    google.script.run.withSuccessHandler(generateEventTable).getEventTableData();
    
     }); 
