@@ -66,13 +66,14 @@ function generateEventTable(dataArray) {
               var col4= document.createElement("td");
               col4.textContent = r[3];
               var col5= document.createElement("td");
-              var viewListAnchor = document.createElement("a");              
+              var viewListAnchor = document.createElement("a");       
+              viewListAnchor.classList.add("btn");
               viewListAnchor.classList.add("btn-dark");
               viewListAnchor.classList.add("btn-sm");
               viewListAnchor.dataset.recordId = r[0];
               //viewListAnchor.setAttribute('href', "https://script.google.com/a/mylifeeveryday.com/macros/s/AKfycbxZSBXq4P1RTQNCujQhV-qmKTllqJZ_9zTUe5uOgPy6/dev?v=listDetail&event=" + r[0]);
               viewListAnchor.setAttribute('href', "<?= params.appurl.toString() ?>?v=listDetail&event=" + r[0]);
-              viewListAnchor.innerText = "View List";
+              viewListAnchor.innerText = "View";
               viewListAnchor.setAttribute("type", "button");
               var editListAnchor = document.createElement("a");
               editListAnchor.classList.add("ml-2");
@@ -83,7 +84,7 @@ function generateEventTable(dataArray) {
               //editListAnchor.setAttribute('href', "https://script.google.com/a/mylifeeveryday.com/macros/s/AKfycbxZSBXq4P1RTQNCujQhV-qmKTllqJZ_9zTUe5uOgPy6/dev?v=editList&event=" + r[0]);
               editListAnchor.setAttribute('href', "<?= params.appurl.toString() ?>?v=editList&event=" + r[0]);
              
-              editListAnchor.innerText = "Edit List";
+              editListAnchor.innerText = "Edit";
               editListAnchor.setAttribute("type", "button");
               
               var deleteListButton = document.createElement("Button");
