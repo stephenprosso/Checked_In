@@ -4,8 +4,40 @@
     
       //add event listner to the btn. when user clicks it will call the function add name
       document.getElementById("btn").addEventListener("click",btnClickAction);
+      document.getElementById("btnAddMulti").addEventListener("click",btnClickAddMulti);
     
-    });
+    }); 
+    
+    
+    
+    
+    function btnClickAddMulti() {
+    
+    
+    var userInput = document.getElementById("multiName").value;
+    var names = userInput.split("\n");
+    
+    names.forEach(function(n){
+    
+        var name = names[0];
+        var fnl = name.split(" ");
+        var first = fnl[0];
+        var last = fnl[1];
+        
+        console.log(names);
+        
+        document.getElementById("multiNameOutput").innerHTML = names[0];
+   
+    
+        });
+
+    
+    }
+    
+ // var displayDateArray = dateText.split(' ');
+     //Logger.log(displayDateArray);
+        //var displayDate = displayDateArray[0] + ' ' + displayDateArray[1] + ' ' + displayDateArray[2];
+           
  
     function btnClickAction() {
        var toValidate = {

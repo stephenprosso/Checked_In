@@ -77,7 +77,7 @@ function getTableData(ev) {
 
 //**** LIST DETAIL JS FUNCTION ****//
 function getTableTitle(ev) {
-
+ //ev = 7;
   var ss = SpreadsheetApp.openByUrl(url);
   var ws = ss.getSheetByName("Event");
   var data = ws.getRange(2,1, ws.getLastRow() - 1,4).getValues();  
@@ -92,6 +92,7 @@ function getTableTitle(ev) {
     
         var dateText = r[3].toLocaleString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
         var displayDateArray = dateText.split(' ');
+     //Logger.log(displayDateArray);
         var displayDate = displayDateArray[0] + ' ' + displayDateArray[1] + ' ' + displayDateArray[2];
         
     
