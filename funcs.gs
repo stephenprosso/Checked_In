@@ -215,7 +215,6 @@ function deleteEventById(recordInfo){
  wsEvent.deleteRow(rowNumber); // delete the row number
 }
 
-//next step is to create a delete button that calls this function and passes the recordInfo.id.
 
 
 

@@ -17,16 +17,24 @@
     var userInput = document.getElementById("multiName").value;
     var names = userInput.split("\n");
     
-    names.forEach(function(n){
+   
+   for (var i =0; i< names.length; i++)  {
+   
+   
+   }
+   
+   
+   names.forEach(function(n){
     
         var name = names[0];
+        console.log(names[0]);
         var fnl = name.split(" ");
         var first = fnl[0];
         var last = fnl[1];
         
         console.log(names);
         
-        document.getElementById("multiNameOutput").innerHTML = names[0];
+        document.getElementById("multiNameOutput").innerHTML = names;
    
     
         });
