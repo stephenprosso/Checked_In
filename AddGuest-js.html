@@ -15,6 +15,40 @@
     
     
     var userInput = document.getElementById("multiName").value;
+    var names = userInput.split("\n").forEach(function() {
+    
+      var multiNames = {};
+      
+      
+  
+          multiNames.name = names[1];
+         var fnl = multiNames.name.split(" ");
+          multiNames.first = fnl[0];
+          multiNames.last = fnl[1];
+        
+        
+        document.getElementById("multiNameOutput").innerHTML = multiNames.first + multiNames.last;
+   
+    
+    
+   
+        
+         console.log(multiNames);
+       
+          google.script.run.addMultiNames(multiNames);
+    
+    
+      });
+    
+    
+    }
+    
+
+    
+ /*   function btnClickAddMultiOLD() {
+    
+    
+    var userInput = document.getElementById("multiName").value;
     var names = userInput.split("\n");
     
    
@@ -38,7 +72,7 @@
           google.script.run.addMultiNames(multiNames);
        
     
-    }
+    }*/
     
  // var displayDateArray = dateText.split(' ');
      //Logger.log(displayDateArray);
