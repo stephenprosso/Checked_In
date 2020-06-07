@@ -54,6 +54,11 @@ function userClick(userInfo){
   //Logger.log(name + "Your CLick is My Command");
 
 }
+//**** AddGuest-js.html functions ****//
+function addMultiNames(userInfo){
+ Logger.log(userInfo);
+
+}
 //**** LIST DETAIL JS FUNCTION ****//
 function getTableData(ev) {
 
