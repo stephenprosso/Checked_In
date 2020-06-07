@@ -19,21 +19,22 @@
     
    
    for (var i=0; i< names.length; i++)  {
-      
-    var name = names[0];
-        console.log(names[0]);
-        var fnl = name.split(" ");
-        var first = fnl[0];
-        var last = fnl[1];
-        
-        console.log(names[0] + names[1]+ names[i]);
-        
-        document.getElementById("multiNameOutput").innerHTML = fnl[1];
-   
+    
     var multiNames = {};
+    multiNames.name = names[0];
+         var fnl = multiNames.name.split(" ");
+        multiNames.first = fnl[0];
+        multiNames.last = fnl[1];
+        
+        
+        document.getElementById("multiNameOutput").innerHTML = multiNames.first + multiNames.last;
+   
+    
     //multiNames.push();
    
         }
+         console.log(multiNames);
+       
           google.script.run.addMultiNames(multiNames);
        
     
