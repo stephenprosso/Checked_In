@@ -57,8 +57,8 @@
     var multiNames = {};
     multiNames.name = names[i];
          var fnl = multiNames.name.split(" ");
-        multiNames.first = fnl[i];
-        multiNames.last = fnl[i];
+        multiNames.first = fnl[0];
+        multiNames.last = fnl[1];
         
         
         document.getElementById("multiNameOutput").innerHTML = multiNames.first + multiNames.last;
