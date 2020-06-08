@@ -11,7 +11,7 @@
     
     
     
-    function btnClickAddMulti() {
+/*    function btnClickAddMulti() {
     
     
     var userInput = document.getElementById("multiName").value;
@@ -41,11 +41,11 @@
       });
     
     
-    }
+    } */
     
 
     
- /*   function btnClickAddMultiOLD() {
+    function btnClickAddMulti() {
     
     
     var userInput = document.getElementById("multiName").value;
@@ -55,10 +55,10 @@
    for (var i=0; i< names.length; i++)  {
     
     var multiNames = {};
-    multiNames.name = names[0];
+    multiNames.name = names[i];
          var fnl = multiNames.name.split(" ");
-        multiNames.first = fnl[0];
-        multiNames.last = fnl[1];
+        multiNames.first = fnl[i];
+        multiNames.last = fnl[i];
         
         
         document.getElementById("multiNameOutput").innerHTML = multiNames.first + multiNames.last;
@@ -72,7 +72,7 @@
           google.script.run.addMultiNames(multiNames);
        
     
-    }*/
+    }
     
  // var displayDateArray = dateText.split(' ');
      //Logger.log(displayDateArray);
