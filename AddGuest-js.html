@@ -50,6 +50,7 @@
     
     var userInput = document.getElementById("multiName").value;
     var names = userInput.split("\n");
+    var fullName = [];
     
    
    for (var i=0; i< names.length; i++)  {
@@ -68,6 +69,7 @@
    
         }
          console.log(multiNames);
+         fullName.push(multiNames);
        
           google.script.run.addMultiNames(multiNames);
        
