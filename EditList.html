@@ -65,10 +65,11 @@
                 </div>
                 <div class="col-sm-2">
                     <!--<label>Select Event</label>-->
-                    <select id="eventList" class="form-control" required>
+                  <!--  <select id="eventList" class="form-control" required>
                      <option selected disabled>-Event-</option>
-                      <?!= glist; ?>
-                    </select> 
+                     
+                    </select> -->
+                   
                    <div class="invalid-feedback">Select event</div>
                 </div><!--END col-->
                 <div class="col-sm-2">
@@ -80,6 +81,8 @@
                 <!--<label>Add Guest</label> -->
                     <button id="btn" type="button" class="btn btn-dark align-bottom">Add</button>
                 </div>
+                  <input id="eventList" type="hidden" class="form-control validate" value="<?!= eID; ?>" readonly>   
+                    
             </div>
             <!-- END ROW -->
         </form>

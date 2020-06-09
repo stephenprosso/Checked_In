@@ -47,33 +47,22 @@
     
     function btnClickAddMulti() {
     
-    
-    var userInput = document.getElementById("multiName").value;
+   var ctype = document.getElementById("credType").value;
+   var eventID  = document.getElementById("eventList").value;
+   var org  = document.getElementById("organization").value;
+       
+    var userInput = document.getElementById("multiName").value.trim();
     var names = userInput.split("\n");
-    var fullName = [];
-    
-   
-   for (var i=0; i< names.length; i++)  {
-    
-    var multiNames = {};
-    multiNames.name = names[i];
-         var fnl = multiNames.name.split(" ");
-        multiNames.first = fnl[0];
-        multiNames.last = fnl[1];
-        
-        
-        document.getElementById("multiNameOutput").innerHTML = multiNames.first + multiNames.last;
-   
-    
-    //multiNames.push();
-   
-        }
-         console.log(multiNames);
-         fullName.push(multiNames);
+    var data = [];
+    names.forEach(function(n){
+       var combinedName = n.split(" ");
        
-          google.script.run.addMultiNames(multiNames);
-       
+       data.push([combinedName[0],combinedName[1],ctype,org,eventID]);
     
+    });
+    console.log(data);
+    google.script.run.addMultiNames(data);
+  
     }
     
  // var displayDateArray = dateText.split(' ');

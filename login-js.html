@@ -1,0 +1,31 @@
+<script>
+ function onSignIn(googleUser) {
+ 
+ console.log("You are now logged in!");
+ var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+        
+        
+   google.script.run.withSuccessHandler(function(loggedIn){
+   
+   //go to dashboard and add the token as a parameter 
+   if(loggedIn){
+   window.top.location.href = "https://script.google.com/a/mylifeeveryday.com/macros/s/AKfycbxZSBXq4P1RTQNCujQhV-qmKTllqJZ_9zTUe5uOgPy6/dev?v=Dashboard&token=" + id_token;
+   
+ // var links = document.querySelectorAll("a");
+  //  links.forEach(function(l){
+    
+ //    l.href = l.href+"&token=" + id_token;
+    
+ //    });
+    
+   }
+   
+   
+   
+   }).acceptToken(id_token);
+ }
+ 
+ 
+ 
+</script>

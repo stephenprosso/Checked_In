@@ -1,5 +1,7 @@
 <script>
 
+
+
  document.getElementById("table-body").addEventListener("click", function(e) {
         //start by checking the class of the classDelete
        
@@ -51,6 +53,15 @@ function generateEventTable(dataArray) {
     // THE BELOW CODE is used to clear out the div to refresh table without refreshign the page. need to call the googe script run again at bottom
     //  $('#tbody').innerHtml = "";
     //  $('#table-body').empty();
+
+        //The google script ill call get table data passing data. on success it will call the generateTable passing the data from data array.
+        google.script.url.getLocation(function(location) {
+        var userToken = location.parameters.token[0];
+            
+        
+
+    
+    
       var tbody = document.getElementById("table-body");
        
          dataArray.forEach(function(r) {
@@ -72,7 +83,7 @@ function generateEventTable(dataArray) {
               viewListAnchor.classList.add("btn-sm");
               viewListAnchor.dataset.recordId = r[0];
               //viewListAnchor.setAttribute('href', "https://script.google.com/a/mylifeeveryday.com/macros/s/AKfycbxZSBXq4P1RTQNCujQhV-qmKTllqJZ_9zTUe5uOgPy6/dev?v=listDetail&event=" + r[0]);
-              viewListAnchor.setAttribute('href', "<?= params.appurl.toString() ?>?v=listDetail&event=" + r[0]);
+              viewListAnchor.setAttribute('href', "<?= params.appurl.toString() ?>?v=listDetail&event=" + r[0] +"&token=" + userToken);
               viewListAnchor.innerText = "View";
               viewListAnchor.setAttribute("type", "button");
               var editListAnchor = document.createElement("a");
@@ -82,7 +93,7 @@ function generateEventTable(dataArray) {
               editListAnchor.classList.add("btn-sm");
               editListAnchor.dataset.recordId = r[0];
               //editListAnchor.setAttribute('href', "https://script.google.com/a/mylifeeveryday.com/macros/s/AKfycbxZSBXq4P1RTQNCujQhV-qmKTllqJZ_9zTUe5uOgPy6/dev?v=editList&event=" + r[0]);
-              editListAnchor.setAttribute('href', "<?= params.appurl.toString() ?>?v=editList&event=" + r[0]);
+              editListAnchor.setAttribute('href', "<?= params.appurl.toString() ?>?v=editList&event=" + r[0]+"&token=" + userToken);
              
               editListAnchor.innerText = "Edit";
               editListAnchor.setAttribute("type", "button");
@@ -109,9 +120,11 @@ function generateEventTable(dataArray) {
               row.appendChild(col4);
               row.appendChild(col5);
               tbody.appendChild(row);
-    });
-    // need to call Google script to refresh grid 
-   //google.script.run.withSuccessHandler(generateEventTable).getEventTableData();
+      });
+      // need to call Google script to refresh grid 
+     //google.script.run.withSuccessHandler(generateEventTable).getEventTableData();
+   
+  });//close getlocation
  }
  
 

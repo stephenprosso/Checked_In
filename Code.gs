@@ -7,7 +7,16 @@ Route.path = function(route,callback){
 
 
 function doGet(e) {
-  
+  if(e.parameters.token) {
+
+       if(!acceptToken(e.parameters.token[0])) {
+      
+       return render("login");  
+    }
+  } else {
+   
+      return render("login");
+  }
   Route.path("addGuest",loadAddGuest);
   Route.path("listDetail",loadListDetail);
   Route.path("editList",loadEditList);
@@ -15,6 +24,7 @@ function doGet(e) {
   Route.path("cardView", loadCardView);
   Route.path("Dashboard", loadDashboard);
   Route.path("privacyPolicy", loadPrivacyPolicy);
+  Route.path("login", loadLogin);
   var params = Object.keys(e.parameters).filter(function(p){return p != "v"});
   
   var viewParameters = {};
@@ -83,7 +93,11 @@ function loadPrivacyPolicy() {
   
 }
 
-
+function loadLogin() {  
+  
+  return render("login");
+  
+}
 
 function loadAddEvent() {
   var spreadSheet = SpreadsheetApp.openByUrl(url);
@@ -106,7 +120,7 @@ function loadEditList1() {
 }
 
 //new function below to replace the function above
-function loadEditList() {
+function loadEditList(params) {
   
   var spreadSheet = SpreadsheetApp.openByUrl(url);
   var workSheet = spreadSheet.getSheetByName("Options");
@@ -123,7 +137,7 @@ function loadEditList() {
   //var ids = workSheet.getRange(2, 1,workSheet.getLastRow()-1,1).getValues().map(function(r){return r[0]});
   
   Logger.log(htmlEventListArray);
-  return render("EditList", {list: htmlListArray, glist: htmlEventListArray })
+  return render("EditList", {list: htmlListArray, eID: params.event})
 
 }
 
