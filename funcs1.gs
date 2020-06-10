@@ -1,28 +1,3 @@
-//**** AddGuest-js.html functions ****//
-function addMultiNames(dataArray){
-
-  var spreadSheet = SpreadsheetApp.openByUrl(url);
-  var workSheet = spreadSheet.getSheetByName("Copy of Data");
-  var ids = workSheet.getRange(2, 1,workSheet.getLastRow()-1,1).getValues().map(function(r){return r[0]});
-  
-  //find the max id from this list
-  var maxID = Math.max.apply(null,ids);
-  var newID = maxID+1;
-  dataArray.forEach(function(r){
-   
-    workSheet.appendRow([newID, r[0], r[1], r[2], r[3],' ', ' ',r[4]]);
-    newID++;
-
-  
-  });
-  
-  
-  //Logger.log(name + "Your CLick is My Command");
-
-}
-
-
-
 function acceptToken(token){
   console.log(token);
   if(typeof token == 'undefined'){

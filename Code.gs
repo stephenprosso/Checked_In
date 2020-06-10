@@ -7,16 +7,17 @@ Route.path = function(route,callback){
 
 
 function doGet(e) {
-  if(e.parameters.token) {
+  //this BS is for google auth2 tokens
+ /* if(e.parameters.token) {
 
-       if(!acceptToken(e.parameters.token[0])) {
-      
-       return render("login");  
-    }
-  } else {
-   
-      return render("login");
-  }
+      if(!acceptToken(e.parameters.token[0])) {
+     
+      return render("login");  
+   }
+ } else {
+  
+     return render("login");
+ }*/
   Route.path("addGuest",loadAddGuest);
   Route.path("listDetail",loadListDetail);
   Route.path("editList",loadEditList);
@@ -24,7 +25,8 @@ function doGet(e) {
   Route.path("cardView", loadCardView);
   Route.path("Dashboard", loadDashboard);
   Route.path("privacyPolicy", loadPrivacyPolicy);
-  Route.path("login", loadLogin);
+  //this BS is for google auth2 tokens
+  //Route.path("login", loadLogin);
   var params = Object.keys(e.parameters).filter(function(p){return p != "v"});
   
   var viewParameters = {};
@@ -92,12 +94,12 @@ function loadPrivacyPolicy() {
   
   
 }
-
-function loadLogin() {  
+ //this BS is for google auth2 tokens
+/*function loadLogin() {  
   
   return render("login");
   
-}
+}*/
 
 function loadAddEvent() {
   var spreadSheet = SpreadsheetApp.openByUrl(url);

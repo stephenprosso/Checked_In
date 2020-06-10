@@ -8,18 +8,13 @@
      <!--META TAG FOR GOOGLE LOGIN-->
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="297108353951-l0dqf4e4vjksup6t2l2ngl2g278dbo24.apps.googleusercontent.com">
-     <script src="https://apis.google.com/js/platform.js" async defer></script>
-        
-       
-   
-    
- 
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
     <!--Bootstrap link -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <?!= include("DashCardView-css"); ?>
+    <?!= include("pageCSS"); ?>
 </head>
-
 <body>
 
 <div id="googleLogin">
@@ -27,47 +22,8 @@
      <div class="g-signin2" data-onsuccess="onSignIn"></div>
     <button onclick="signOut()">Sign out</button> 
 </div>
- <!-- Start Nav Bar -->
- <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="<?= ScriptApp.getService().getUrl(); ?>">Checkden</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-         <span class="navbar-toggler-icon"></span>
-       </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://docs.google.com/spreadsheets/d/1-6UatdMa_6eXjhzZ-h5Pw2IcjBp_542uNyeIHyjMBfI/edit#gid=0" Target="_blank">Go To Google Sheet</a>                      
-                    </li>
-                    <li class="nav-item">
-                       <a class="nav-link" href="<?= ScriptApp.getService().getUrl(); ?>?v=addEvent">Add Event</a>  
-                     </li>
-                     <li class="nav-item">
-                       <a class="nav-link" href="<?= ScriptApp.getService().getUrl(); ?>?v=addGuest">Add Guest</a>  
-                     </li>
-                    <!-- **DO NOT DELETE THIS COMMENTED CODE** -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Event Views</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="<?= ScriptApp.getService().getUrl(); ?>?v=cardView">Card View</a>
-                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="<?= ScriptApp.getService().getUrl(); ?>?v=Dashboard">Manage Events</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        </div>
-      <!-- End Nav Bar -->  
-    <!-- Add a Script Tag for the below function. to be moved to your JS file -->
-    <script>
-    
-    function signOut() {
-      gapi.auth2.getAuthInstance().signOut().then(function() {
-        console.log('user signed out')
-      })
-    }
-  </script>
+
+
      <!-- SCRIPT FOR GOOGLE LOGIN -->
     
     <!-- SCRIPT FOR JQUERY -->

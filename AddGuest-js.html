@@ -8,44 +8,9 @@
     
     }); 
     
-    
-    
-    
-/*    function btnClickAddMulti() {
-    
-    
-    var userInput = document.getElementById("multiName").value;
-    var names = userInput.split("\n").forEach(function() {
-    
-      var multiNames = {};
-      
-      
-  
-          multiNames.name = names[1];
-         var fnl = multiNames.name.split(" ");
-          multiNames.first = fnl[0];
-          multiNames.last = fnl[1];
-        
-        
-        document.getElementById("multiNameOutput").innerHTML = multiNames.first + multiNames.last;
-   
-    
-    
-   
-        
-         console.log(multiNames);
-       
-          google.script.run.addMultiNames(multiNames);
-    
-    
-      });
-    
-    
-    } */
-    
 
     
-    function btnClickAddMulti() {
+function btnClickAddMulti() {
     
    var ctype = document.getElementById("credType").value;
    var eventID  = document.getElementById("eventList").value;
@@ -65,11 +30,7 @@
   
     }
     
- // var displayDateArray = dateText.split(' ');
-     //Logger.log(displayDateArray);
-        //var displayDate = displayDateArray[0] + ' ' + displayDateArray[1] + ' ' + displayDateArray[2];
-           
- 
+
     function btnClickAction() {
        var toValidate = {
          firstName: "First Name Required",

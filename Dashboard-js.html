@@ -54,14 +54,10 @@ function generateEventTable(dataArray) {
     //  $('#tbody').innerHtml = "";
     //  $('#table-body').empty();
 
-        //The google script ill call get table data passing data. on success it will call the generateTable passing the data from data array.
-        google.script.url.getLocation(function(location) {
-        var userToken = location.parameters.token[0];
-            
-        
-
-    
-    
+        //Bellow will get the parameter from your query string
+        //google.script.url.getLocation(function(location) {
+        //var userToken = location.parameters.token[0];
+   
       var tbody = document.getElementById("table-body");
        
          dataArray.forEach(function(r) {
@@ -83,7 +79,10 @@ function generateEventTable(dataArray) {
               viewListAnchor.classList.add("btn-sm");
               viewListAnchor.dataset.recordId = r[0];
               //viewListAnchor.setAttribute('href', "https://script.google.com/a/mylifeeveryday.com/macros/s/AKfycbxZSBXq4P1RTQNCujQhV-qmKTllqJZ_9zTUe5uOgPy6/dev?v=listDetail&event=" + r[0]);
-              viewListAnchor.setAttribute('href', "<?= params.appurl.toString() ?>?v=listDetail&event=" + r[0] +"&token=" + userToken);
+              //this version includes auth2 useeToken
+              //viewListAnchor.setAttribute('href', "<?= params.appurl.toString() ?>?v=listDetail&event=" + r[0] +"&token=" + userToken);
+              viewListAnchor.setAttribute('href', "<?= params.appurl.toString() ?>?v=listDetail&event=" + r[0]);
+             
               viewListAnchor.innerText = "View";
               viewListAnchor.setAttribute("type", "button");
               var editListAnchor = document.createElement("a");
@@ -93,7 +92,9 @@ function generateEventTable(dataArray) {
               editListAnchor.classList.add("btn-sm");
               editListAnchor.dataset.recordId = r[0];
               //editListAnchor.setAttribute('href', "https://script.google.com/a/mylifeeveryday.com/macros/s/AKfycbxZSBXq4P1RTQNCujQhV-qmKTllqJZ_9zTUe5uOgPy6/dev?v=editList&event=" + r[0]);
-              editListAnchor.setAttribute('href', "<?= params.appurl.toString() ?>?v=editList&event=" + r[0]+"&token=" + userToken);
+              //this version includes auth2 useeToken
+              //editListAnchor.setAttribute('href', "<?= params.appurl.toString() ?>?v=editList&event=" + r[0]+"&token=" + userToken);
+              editListAnchor.setAttribute('href', "<?= params.appurl.toString() ?>?v=editList&event=" + r[0]);
              
               editListAnchor.innerText = "Edit";
               editListAnchor.setAttribute("type", "button");
@@ -107,9 +108,7 @@ function generateEventTable(dataArray) {
               deleteListButton.dataset.recordId = r[0];
               deleteListButton.innerText = "Delete";
               deleteListButton.setAttribute("type", "button");
-              
-              
-             
+           
               console.log(viewListAnchor.href);
               col5.appendChild(viewListAnchor);
               col5.appendChild(editListAnchor); 
@@ -124,7 +123,8 @@ function generateEventTable(dataArray) {
       // need to call Google script to refresh grid 
      //google.script.run.withSuccessHandler(generateEventTable).getEventTableData();
    
-  });//close getlocation
+ //Below is the old get location closing tag. if you want to use the get location to get parameters from the query string everything needs to be inside the function
+ //});//close getlocation
  }
  
 
