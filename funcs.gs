@@ -66,7 +66,7 @@ function addMultiNames(dataArray){
   var newID = maxID+1;
   dataArray.forEach(function(r){
    
-    workSheet.appendRow([newID, r[0], r[1], r[2], r[3],' ', ' ',r[4]]);
+    workSheet.appendRow([newID, r[0], r[1], r[2], r[3],r[4],r[5],r[6]]);
     newID++;
 
   

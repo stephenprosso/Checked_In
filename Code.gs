@@ -111,15 +111,6 @@ function loadAddEvent() {
   return render("AddEvent");
 }
 
-function loadEditList1() {
-  var spreadSheet = SpreadsheetApp.openByUrl(url);
-  var workSheet = spreadSheet.getSheetByName("Options");
-  var list = workSheet.getRange(1,1,workSheet.getRange("A1").getDataRegion().getLastRow(),1).getValues();
-  var htmlListArray = list.map(function(r){return '<option>' + r[0] + '</option>'; }).join('');  
-  Logger.log(list);
-  Logger.log(htmlListArray);
-  return render("EditList", {list: htmlListArray});
-}
 
 //new function below to replace the function above
 //was passing params but pulled it from below

@@ -4,17 +4,47 @@
     
       //add event listner to the btn. when user clicks it will call the function add name
       document.getElementById("btn").addEventListener("click",btnClickAction);
-      document.getElementById("btnAddMulti").addEventListener("click",btnClickAddMulti);
+      document.getElementById("btnAddMulti").addEventListener("click",btnclickAddMultiValidate);
     
     }); 
     
+function btnclickAddMultiValidate(){  
+       var toValidate = {
+        
+        
+         credType: "Cred Type Required",
+         eventList: "Select Event Required",
+          multiName: "Names Required"
+       };
+      
+       var idKeys = Object.keys(toValidate);
+       
+       var allValid = true;
+       idKeys.forEach(function(id){
+        var isValid =  checkIfValid(id, toValidate[id]);
+             if (!isValid) {
+             
+             allValid = false;
+             }
+       });
+       
+             if(allValid) {
+             
+           addMultiNames();
+       }
+    
+    } //close function btnclick
+    //.is-invalid and .is-valid  
 
     
-function btnClickAddMulti() {
+function addMultiNames() {
     
    var ctype = document.getElementById("credType").value;
    var eventID  = document.getElementById("eventList").value;
    var org  = document.getElementById("organization").value;
+   var checkinDate = '';
+   var checkBox = false;
+       
        
     var userInput = document.getElementById("multiName").value.trim();
     var names = userInput.split("\n");
@@ -22,7 +52,7 @@ function btnClickAddMulti() {
     names.forEach(function(n){
        var combinedName = n.split(" ");
        
-       data.push([combinedName[0],combinedName[1],ctype,org,eventID]);
+       data.push([combinedName[0],combinedName[1],ctype,org,checkinDate,checkBox,eventID]);
     
     });
     console.log(data);
@@ -60,7 +90,7 @@ function btnClickAddMulti() {
     function checkIfValid(elID, message) {
       var elToValidate = document.getElementById(elID);
       var isValid = false;
-      console.log("Styart validating");
+      console.log("Start validating");
       console.log(elToValidate.tagName);
       switch(elToValidate.tagName) {
        
@@ -69,6 +99,10 @@ function btnClickAddMulti() {
                   isValid ? elToValidate.classList.remove("is-invalid") : elToValidate.classList.add("is-invalid");
                 break;
               case "SELECT":
+                  isValid = elToValidate.selectedIndex === 0 ? false : true;
+                  isValid ? elToValidate.classList.remove("is-invalid") : elToValidate.classList.add("is-invalid");
+                break;
+              case "TEXTAREA":
                   isValid = elToValidate.selectedIndex === 0 ? false : true;
                   isValid ? elToValidate.classList.remove("is-invalid") : elToValidate.classList.add("is-invalid");
                 break;
