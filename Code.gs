@@ -122,7 +122,8 @@ function loadEditList1() {
 }
 
 //new function below to replace the function above
-function loadEditList(params) {
+//was passing params but pulled it from below
+function loadEditList() {
   
   var spreadSheet = SpreadsheetApp.openByUrl(url);
   var workSheet = spreadSheet.getSheetByName("Options");
@@ -139,7 +140,10 @@ function loadEditList(params) {
   //var ids = workSheet.getRange(2, 1,workSheet.getLastRow()-1,1).getValues().map(function(r){return r[0]});
   
   Logger.log(htmlEventListArray);
-  return render("EditList", {list: htmlListArray, eID: params.event})
+  //the eID was passed to loadEditlist as params. dropped that and pulled it from the query string
+  // return render("EditList", {list: htmlListArray, eID: params.event})
+
+  return render("EditList", {list: htmlListArray })
 
 }
 

@@ -45,12 +45,12 @@
     <div class="container">
         <form>
             <div class="row form-group">
-                <div class="col-sm-2">
+                <div class="col-sm-3">
                    <!--<label for="firstName">First Name</label>--> 
                     <input id="firstName" type="text" class="form-control validate" placeholder="First Name" required>
                     <div class="invalid-feedback">Enter First Name</div>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-3">
                  <!--<label for="lastNname">Last Name</label>-->
                     <input id="lastNname" type="text" class="form-control validate" placeholder="Last Name" required>   
                     <div class="invalid-feedback">Enter Last Name</div>
@@ -64,24 +64,26 @@
                  <div class="invalid-feedback">Select a Cred Type</div>
                 </div>
                 <div class="col-sm-2">
-                    <!--<label>Select Event</label>-->
+                  <!--<label for="organization">Last Name</label>-->
+                    <input id="organization" type="text" class="form-control validate" placeholder="Organization" value="">   
+                    
+                  
+                  <!--<label>Select Event</label>-->
                   <!--  <select id="eventList" class="form-control" required>
                      <option selected disabled>-Event-</option>
                      
                     </select> -->
                    
                    <div class="invalid-feedback">Select event</div>
-                </div><!--END col-->
-                <div class="col-sm-2">
-                 <!--<label for="organization">Last Name</label>-->
-                    <input id="organization" type="text" class="form-control validate" placeholder="Organization" value="">   
-                    
-                </div>
+                </div> <!--END col-->
+
                 <div class="col-sm-1">
                 <!--<label>Add Guest</label> -->
                     <button id="btn" type="button" class="btn btn-dark align-bottom">Add</button>
                 </div>
-                  <input id="eventList" type="hidden" class="form-control validate" value="<?!= eID; ?>" readonly>   
+                <!-- Diong it like below get the eID from the javascript, getting it from the server, and setting in html, to give back to the javascript
+                     to give it back to the server -->
+                 <input id="eventList" type="hidden" class="form-control validate" value="" readonly>
                     
             </div>
             <!-- END ROW -->

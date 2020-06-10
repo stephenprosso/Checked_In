@@ -100,15 +100,18 @@
    } // close function CheckIfValid
    function addGuest(){
       
- 
+    google.script.url.getLocation(function(location) {
+    var eventID = location.parameters.event[0];
     var userInfo = {};
     
     userInfo.fname = document.getElementById("firstName").value;
     userInfo.lname = document.getElementById("lastNname").value;
     userInfo.ctype = document.getElementById("credType").value;
     userInfo.org = document.getElementById("organization").value;
-   
-    userInfo.eventID = document.getElementById("eventList").value;
+    // this is setting the value of the element
+    //userInfo.eventID = document.getElementById("eventList").value;
+    userInfo.eventID = eventID;
+    
     google.script.run.userClickAddGuest(userInfo);
     
         
@@ -121,7 +124,7 @@
     //set selected index to 0 after data submitted
     credTypeSelect.selectedIndex = 0;
 
-     google.script.url.getLocation(function(location) {
+     
      google.script.run.withSuccessHandler(generateEditTable).getEditList(location.parameters.event[0]);
        });
     }
