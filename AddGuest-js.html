@@ -56,8 +56,18 @@ function addMultiNames() {
     
     });
     console.log(data);
-    google.script.run.addMultiNames(data);
-  
+    document.getElementById("loading").classList.remove("d-none");
+    google.script.run.withSuccessHandler(displayMessage).addMultiNames(data);
+      document.getElementById("multiName").value = "";
+      document.getElementById("organization").value = "";
+      //create cred type as a varialbe
+      var credTypeSelect = document.getElementById("credType");
+      //set selected index to 0 after data submitted
+      credTypeSelect.selectedIndex = 0;
+       var guestListSelect = document.getElementById("eventList");
+      //set selected index to 0 after data submitted
+      guestListSelect.selectedIndex = 0; 
+
     }
     
 
@@ -103,7 +113,7 @@ function addMultiNames() {
                   isValid ? elToValidate.classList.remove("is-invalid") : elToValidate.classList.add("is-invalid");
                 break;
               case "TEXTAREA":
-                  isValid = elToValidate.selectedIndex === 0 ? false : true;
+                  isValid = elToValidate.checkValidity();
                   isValid ? elToValidate.classList.remove("is-invalid") : elToValidate.classList.add("is-invalid");
                 break;
               default:
@@ -140,5 +150,13 @@ function addMultiNames() {
           //set selected index to 0 after data submitted
           guestListSelect.selectedIndex = 0; 
     }
+    function displayMessage(message){
+    document.getElementById("loading").classList.add("d-none");
+    //document.getElementById("firstName").innerHTML = message;
+    document.getElementById("multiNameOutput").innerHTML = "names added";
+    console.log(multiNameOutput);
     
+    
+    
+    }
     </script>
