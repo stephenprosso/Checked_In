@@ -11,10 +11,7 @@
             //the recrodID is et below when the table is populated
             recordInfo.id = e.target.dataset.recordId;
          
-            //show the loading div 
-            //document.getElementById("loading").classList.remove("d-none");
-            //the below googe script function calls a function in your GS page. on success it will call the function in the call back.
-            document.getElementById("loading").classList.remove("d-none");
+              document.getElementById("loading").classList.remove("d-none");
             google.script.run.withSuccessHandler(function() {
                 e.target.closest(".classRow").remove();
                 document.getElementById("loading").classList.add("d-none");
@@ -33,10 +30,77 @@
             console.log(location.parameters.event[0]);
             google.script.run.withSuccessHandler(generateEditTable).getEditList(location.parameters.event[0]);
             google.script.run.withSuccessHandler(generateTableTitle).getTableTitle(location.parameters.event[0]);
-
+           
         });   
    
     }); 
+    
+    function btnclickAddMultiValidate(){  
+       var toValidate = {
+        
+        
+         credType: "Cred Type Required",
+         eventList: "Select Event Required",
+          multiName: "Names Required"
+       };
+      
+       var idKeys = Object.keys(toValidate);
+       
+       var allValid = true;
+       idKeys.forEach(function(id){
+        var isValid =  checkIfValid(id, toValidate[id]);
+             if (!isValid) {
+             
+             allValid = false;
+             }
+       });
+       
+             if(allValid) {
+             
+           addMultiNames();
+       }
+    
+    } //close function btnclick
+    //.is-invalid and .is-valid  
+
+    
+function addMultiNames() {
+ google.script.url.getLocation(function(location) {
+    var eventID = location.parameters.event[0];
+    
+   var ctype = document.getElementById("credType").value;
+   var org  = document.getElementById("organization").value;
+   var checkinDate = '';
+   var checkBox = false;
+       
+       
+    var userInput = document.getElementById("multiName").value.trim();
+    var names = userInput.split("\n");
+    var data = [];
+    names.forEach(function(n){
+       var combinedName = n.split(" ");
+       
+       data.push([combinedName[0],combinedName[1],ctype,org,checkinDate,checkBox,eventID]);
+    
+    });
+    console.log(data);
+    document.getElementById("loading").classList.remove("d-none");
+    google.script.run.addMultiNames(data);
+      document.getElementById("multiName").value = "";
+      document.getElementById("organization").value = "";
+      //create cred type as a varialbe
+      var credTypeSelect = document.getElementById("credType");
+      //set selected index to 0 after data submitted
+      credTypeSelect.selectedIndex = 0;
+       var guestListSelect = document.getElementById("eventList");
+      //set selected index to 0 after data submitted
+      guestListSelect.selectedIndex = 0; 
+      document.getElementById("loading").classList.add("d-none");
+    
+      });
+
+    }
+    
     
    function generateTableTitle(title) {
 
@@ -47,88 +111,38 @@
 
 }
    
-    document.getElementById("btn").addEventListener("click",btnClickAction); 
+    document.getElementById("btnAddMulti").addEventListener("click",btnclickAddMultiValidate); 
     
-       function btnClickAction() {
-      var toValidate = {
-        firstName: "First Name Required",
-        lastNname: "Last Name Required",
-        credType: "Cred Type Required",
-        eventList: "Select Event Required"     
-      };
-     
-      var idKeys = Object.keys(toValidate);
-      
-      var allValid = true;
-      idKeys.forEach(function(id){
-       var isValid =  checkIfValid(id, toValidate[id]);
-            if (!isValid) {
-            
-            allValid = false;
-            }
-      });
-      
-            if(allValid) {
-            
-          addGuest();
-      }
-   
-   } //close function btnclick
+    
    //.is-invalid and .is-valid  
    
       function checkIfValid(elID, message) {
-     var elToValidate = document.getElementById(elID);
-     var isValid = false;
-     console.log("Styart validating");
-     console.log(elToValidate.tagName);
-     switch(elToValidate.tagName) {
+      var elToValidate = document.getElementById(elID);
+      var isValid = false;
+      console.log("Start validating");
+      console.log(elToValidate.tagName);
+      switch(elToValidate.tagName) {
+       
+              case "INPUT":
+                  isValid = elToValidate.checkValidity();
+                  isValid ? elToValidate.classList.remove("is-invalid") : elToValidate.classList.add("is-invalid");
+                break;
+              case "SELECT":
+                  isValid = elToValidate.selectedIndex === 0 ? false : true;
+                  isValid ? elToValidate.classList.remove("is-invalid") : elToValidate.classList.add("is-invalid");
+                break;
+              case "TEXTAREA":
+                  isValid = elToValidate.checkValidity();
+                  isValid ? elToValidate.classList.remove("is-invalid") : elToValidate.classList.add("is-invalid");
+                break;
+              default:
+                // code block
+            }
       
-             case "INPUT":
-                 isValid = elToValidate.checkValidity();
-                 isValid ? elToValidate.classList.remove("is-invalid") : elToValidate.classList.add("is-invalid");
-               break;
-             case "SELECT":
-                 isValid = elToValidate.selectedIndex === 0 ? false : true;
-                 isValid ? elToValidate.classList.remove("is-invalid") : elToValidate.classList.add("is-invalid");
-               break;
-             default:
-               // code block
-           }
-     
-    return isValid;
+     return isValid;
+    
+    } // close function CheckIfValid
    
-   } // close function CheckIfValid
-   function addGuest(){
-      
-    google.script.url.getLocation(function(location) {
-    var eventID = location.parameters.event[0];
-    var userInfo = {};
-    
-    userInfo.fname = document.getElementById("firstName").value;
-    userInfo.lname = document.getElementById("lastNname").value;
-    userInfo.ctype = document.getElementById("credType").value;
-    userInfo.org = document.getElementById("organization").value;
-    // this is setting the value of the element
-    //userInfo.eventID = document.getElementById("eventList").value;
-    userInfo.eventID = eventID;
-    
-    google.script.run.userClickAddGuest(userInfo);
-    
-        
-   
-    document.getElementById("firstName").value = "";
-    document.getElementById("lastNname").value = "";
-
-    //create cred type as a varialbe
-    var credTypeSelect = document.getElementById("credType");
-    //set selected index to 0 after data submitted
-    credTypeSelect.selectedIndex = 0;
-
-     
-     google.script.run.withSuccessHandler(generateEditTable).getEditList(location.parameters.event[0]);
-       });
-    }
-    
  
  function generateEditTable(dataArray) {
 
