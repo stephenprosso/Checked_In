@@ -44,11 +44,29 @@
   
   document.addEventListener('DOMContentLoaded', function() {
       //The google script ill call get table data passing data. on success it will call the generateTable passing the data from data array.
-   google.script.run.withSuccessHandler(generateEventTable).getEventTableData();
+    google.script.run.withSuccessHandler(generateEventTable).getEventTableData();
+    document.getElementById("accessButton").addEventListener("click",accessButtonAction);
    
     }); 
+    
+    function accessButtonAction(){
+    
+    var accessCode = document.getElementById("passwordInput").value;
+  
+    if(accessCode === "69") {
+       document.getElementById("passwordAccess").classList.add("d-none");
+    console.log(accessCode);
+      alert("You got it");
+    } else {
+    
+    alert("You got problems pal");
+    
+    }
+    
+    
+    }
       
-
+ 
 function generateEventTable(dataArray) {
     // THE BELOW CODE is used to clear out the div to refresh table without refreshign the page. need to call the googe script run again at bottom
     //  $('#tbody').innerHtml = "";
