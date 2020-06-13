@@ -24,7 +24,6 @@ function doGet(e) {
   Route.path("addEvent", loadAddEvent);
   Route.path("cardView", loadCardView);
   Route.path("Dashboard", loadDashboard);
-  Route.path("privacyPolicy", loadPrivacyPolicy);
   //this BS is for google auth2 tokens
   //Route.path("login", loadLogin);
   var params = Object.keys(e.parameters).filter(function(p){return p != "v"});
@@ -88,12 +87,7 @@ function loadDashboard() {
   
   
 }
-function loadPrivacyPolicy() {  
-  
-  return render("PrivacyPolicy");
-  
-  
-}
+
  //this BS is for google auth2 tokens
 /*function loadLogin() {  
   
